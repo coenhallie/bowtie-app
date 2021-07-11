@@ -1,18 +1,37 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="zoom-area" ref="parent">
+    <Suspense>
+      <template #default>
+        <Dashboard />
+      </template>
+      <template #fallback> Loading... </template>
+    </Suspense>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Dashboard from '@/components/Dashboard'
+import Panzoom from '@panzoom/panzoom';
 
 export default {
   name: "Home",
   components: {
-    HelloWorld,
+    Dashboard,
   },
+  mounted() {
+    const elem = this.$refs.parent;
+    const instance = Panzoom(elem, { canvas: true });
+
+    elem.parentElement.addEventListener("wheel", function (event) {
+      instance.zoomWithWheel(event);
+    });
+  }
 };
 </script>
+
+<style scoped>
+.zoom-area {
+  height: 1000px;
+  width: 1000px;
+}
+</style>
