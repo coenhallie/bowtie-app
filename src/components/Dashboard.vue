@@ -1,21 +1,54 @@
 <template>
-  <risk-card v-for="(risk, index) in risks" :key="index" :risk="risk" />
+  <div>
+    <div class="grid grid-cols-3 gap-4">
+      <div id="link">
+        <threat-card
+          v-for="(threat, index) in threats"
+          :key="index"
+          :threat="threat"
+        />
+      </div>
+      <main-hazard />
+      <div>
+        <threat-card
+          v-for="(threat, index) in threats"
+          :key="index"
+          :threat="threat"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+// import Panzoom from '@panzoom/panzoom'
 import axios from 'axios'
-import RiskCard from "@/components/RiskCard"
+import ThreatCard from '@/components/threats/ThreatCard'
+import MainHazard from '@/components/MainHazard'
 
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   async setup() {
-    let { data: risks } = await axios.get("http://localhost:3000/risks");
+    let { data: threats } = await axios.get('http://localhost:3000/threats')
+
     return {
-      risks,
+      threats,
     }
   },
   components: {
-    RiskCard,
+    ThreatCard,
+    MainHazard,
   },
-};
+  // mounted() {
+  //   const elem = this.$refs.parent
+  //   const instance = Panzoom(elem, {
+  //     canvas: true,
+  //     exclude: [document.getElementById('link')],
+  //   })
+
+  //   elem.parentElement.addEventListener('wheel', function (event) {
+  //     instance.zoomWithWheel(event)
+  //   })
+  // },
+}
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="zoom-area" ref="parent">
+  <div>
     <Suspense>
       <template #default>
         <Dashboard />
@@ -11,22 +11,13 @@
 
 <script>
 import Dashboard from '@/components/Dashboard'
-import Panzoom from '@panzoom/panzoom';
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
     Dashboard,
   },
-  mounted() {
-    const elem = this.$refs.parent;
-    const instance = Panzoom(elem, { canvas: true });
-
-    elem.parentElement.addEventListener("wheel", function (event) {
-      instance.zoomWithWheel(event);
-    });
-  }
-};
+}
 </script>
 
 <style scoped>

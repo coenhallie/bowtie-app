@@ -1,21 +1,62 @@
 {
-  "risks": [
+  "threats": [
     {
       "id": 1,
-      "riskName": "DDos attack",
+      "threatName": "DDos attack",
       "body": "It is possible to target our central server with a DDos attack",
-      "riskLevel": "High"
+      "threatLevel": "High",
+      "barriers": [
+        {
+          "id": 1,
+          "barrierName": "Check server configuration",
+          "body": "Check our Windows server config",
+          "riskLevel": "High"
+        },
+        {
+          "id": 2,
+          "barrierName": "Check backup servers",
+          "body": "Make suer our backup servers run correctly",
+          "riskLevel": "Medium"
+        }
+      ]
     },
     {
       "id": 2,
-      "riskName": "SQL Injection",
+      "threatName": "SQL Injection",
       "body": "We have hundreds of untested input fields which could be injected with malicious code",
-      "riskLevel": "Medium"
+      "threatLevel": "Medium",
+      "barriers": [
+        {
+          "id": 1,
+          "barrierName": "Sanitize all input fields",
+          "body": "Make sure we can't use script tags in input fields",
+          "riskLevel": "High"
+        }
+      ]
     },
     {
       "id": 3,
-      "riskName": "Phishing emails",
+      "threatName": "Phishing emails",
       "body": "Our staff is not trained to deal with unknown emails",
-      "riskLevel": "Low"
+      "threatLevel": "Low"
+    },
+    {
+      "id": 99,
+      "threatName": "Newly added threat",
+      "body": "Our staff is not trained to deal with unknown emails",
+      "threatLevel": "Low"
+    },
+    {
+      "id": 111,
+      "threatName": "",
+      "body": "Our staff is not trained to deal with unknown emails",
+      "threatLevel": "Low"
+    },
+    {
+      "id": 0.39883316027837834,
+      "threatName": "HTTP response threat",
+      "body": "Our staff is not trained to deal with unknown emails",
+      "threatLevel": "Low"
     }
-  ]}
+  ]
+}
