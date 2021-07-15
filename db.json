@@ -17,6 +17,12 @@
           "barrierName": "Check backup servers",
           "body": "Make suer our backup servers run correctly",
           "riskLevel": "Medium"
+        },
+        {
+          "id": 3,
+          "barrierName": "Any Chinese hardware installed?",
+          "body": "Make sure we dont use any Chinese crap",
+          "riskLevel": "High"
         }
       ]
     },
@@ -41,22 +47,27 @@
       "threatLevel": "Low"
     },
     {
-      "id": 99,
-      "threatName": "Newly added threat",
+      "id": 0.8739656501946125,
+      "threatName": "Insider attack",
       "body": "Our staff is not trained to deal with unknown emails",
       "threatLevel": "Low"
+    }
+  ],
+  "consequenses": [
+    {
+      "id": 1,
+      "consequenseName": "Service delivery interrupted",
+      "body": "Not being able to deliver our goods in time"
     },
     {
-      "id": 111,
-      "threatName": "",
-      "body": "Our staff is not trained to deal with unknown emails",
-      "threatLevel": "Low"
+      "id": 2,
+      "consequenseName": "Losing revenue for at least a month",
+      "body": "Revenue we can't miss as our stakeholders expect it"
     },
     {
-      "id": 0.39883316027837834,
-      "threatName": "HTTP response threat",
-      "body": "Our staff is not trained to deal with unknown emails",
-      "threatLevel": "Low"
+      "id": 3,
+      "consequenseName": "Loss of reputation",
+      "body": "Trying to maintain our good reputation"
     }
   ]
 }
