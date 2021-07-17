@@ -1,6 +1,6 @@
 <template>
-  <div ref="parent">
-    <div class="grid grid-cols-3 gap-4">
+  <div>
+    <div ref="parent" class="grid grid-cols-3 gap-4">
       <div id="link">
         <transition-group name="fade">
           <threat-card
@@ -11,7 +11,7 @@
           />
         </transition-group>
       </div>
-      <main-hazard @mainHazard="addMainHazard" />
+      <main-hazard @threatAdded="addMainHazard" />
       <div>
         <consequense-card
           v-for="(consequense, index) in consequenses"
@@ -33,7 +33,7 @@ import { ref, onMounted } from 'vue'
 
 export default {
   name: 'Dashboard',
-  async setup(props, { attrs }) {
+  async setup() {
     const threats = ref([])
     const consequenses = ref([])
 
@@ -43,24 +43,27 @@ export default {
       })
     }
 
-    const addMainHazard = () => {
-      console.log('etststse')
-    }
-
-    console.log('attrs?', attrs)
-
     const fetchConsequenses = () => {
-      return axios.get('http://localhost:3000/consequenses').then((response) => {
-        consequenses.value = response.data
-      })
+      return axios
+        .get('http://localhost:3000/consequenses')
+        .then((response) => {
+          consequenses.value = response.data
+        })
     }
 
-    function selectedThreat(threat) {
+    const selectedThreat = (threat) => {
       axios.delete('http://localhost:3000/threats/' + threat.id).then(() => {
         const threatId = threats.value.indexOf(threat)
         threats.value.splice(threatId, 1)
       })
     }
+
+    // const addBarrier = (threat) => {
+    //   axios.put('http://localhost:3000/threats/threats/barriers' + threat.id).then(() => {
+    //     const threatId = threats.value.indexOf(threat)
+    //     threats.value.splice(threatId, 1)
+    //   })
+    // }
 
     onMounted(() => {
       fetchThreats()
@@ -73,7 +76,6 @@ export default {
       selectedThreat,
       fetchThreats,
       fetchConsequenses,
-      addMainHazard,
     }
   },
   components: {

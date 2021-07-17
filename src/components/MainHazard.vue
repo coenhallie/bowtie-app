@@ -1,31 +1,63 @@
 <template>
   <div class="flex">
-    <div class="h-40 w-100 p-6 m-6 max-w-sm m-auto bg-gray-200 rounded-xl shadow-md flex-col items-center space-x-4">
+    <div class="h-40 w-100 p-6 m-6 max-w-sm m-auto bg-gray-200 rounded-xl shadow-md flex-col items-center">
       <div class="text-xl font-medium text-black">Fall from Height</div>
-      <button class="rounded-full py-3 px-6 bg-gray-200 bg-opacity-75 text-white" @click="openThreatModal()">Add threat</button>
+      <div>
+        <button @click="openThreatModal()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-10 w-10"
+            viewBox="0 0 20 20"
+            fill="gray"
+          >
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button @click="openConsequenseModal()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-10 w-10"
+            viewBox="0 0 20 20"
+            fill="gray"
+          >
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
-  <add-threat-modal @mainHazard="mainHazard" v-if="openModal" @closeModal="openModal = false" />
+  <add-threat-modal v-if="threatModal" @closeModal="threatModal = false" />
+  <add-consequense-modal v-if="consequenseModal" @closeModal="consequenseModal = false" />
 </template>
 
 <script>
 import { ref } from 'vue'
 import AddThreatModal from '@/components/threats/AddThreatModal'
+import AddConsequenseModal from '@/components/consequenses/AddConsequenseModal'
 export default {
   name: 'MainHazard',
   setup() {
-    const openModal = ref(false)
+    const threatModal = ref(false)
+    const consequenseModal = ref(false)
+
     function openThreatModal() {
-      openModal.value = true
+      threatModal.value = true
+    }
+
+    function openConsequenseModal() {
+      consequenseModal.value = true
     }
 
     return {
-      openModal,
+      threatModal,
+      consequenseModal,
       openThreatModal,
+      openConsequenseModal,
     }
   },
   components: {
     AddThreatModal,
+    AddConsequenseModal,
   },
 }
 </script>

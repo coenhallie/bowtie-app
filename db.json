@@ -45,12 +45,6 @@
       "threatName": "Phishing emails",
       "body": "Our staff is not trained to deal with unknown emails",
       "threatLevel": "Low"
-    },
-    {
-      "id": 0.8739656501946125,
-      "threatName": "Insider attack",
-      "body": "Our staff is not trained to deal with unknown emails",
-      "threatLevel": "Low"
     }
   ],
   "consequenses": [
