@@ -1,21 +1,18 @@
 <template>
   <div>
-    <Suspense>
-      <template #default>
-        <Dashboard />
-      </template>
-      <template #fallback> Loading... </template>
-    </Suspense>
+    <dashboardWrapper />
   </div>
 </template>
 
 <script>
+import DashboardWrapper from '@/components/DashboardWrapper'
 import Dashboard from '@/components/Dashboard'
 
 export default {
   name: 'Home',
   components: {
-    Dashboard,
+    DashboardWrapper,
+    Dashboard
   },
 }
 </script>
