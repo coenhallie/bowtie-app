@@ -3,21 +3,12 @@
     <div ref="parent" class="grid grid-cols-3 gap-4">
       <div id="link">
         <transition-group name="fade">
-          <threat-card
-            v-for="(threat, index) in threats"
-            :key="index"
-            :threat="threat"
-            @threat="selectedThreat"
-          />
+          <threat-card v-for="(threat, index) in threats" :key="index" :threat="threat" @threat="selectedThreat" />
         </transition-group>
       </div>
       <main-hazard @threatAdded="addMainHazard" />
       <div>
-        <consequense-card
-          v-for="(consequense, index) in consequenses"
-          :key="index"
-          :consequense="consequense"
-        />
+        <consequense-card v-for="(consequense, index) in consequenses" :key="index" :consequense="consequense" />
       </div>
     </div>
   </div>
