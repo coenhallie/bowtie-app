@@ -1,9 +1,9 @@
 <template>
   <div class="flex">
-    <div class="h-40 w-100 p-6 m-6 max-w-sm m-auto bg-gray-200 rounded-xl shadow-md flex-col items-center">
+    <div class="h-40 w-100 p-6 m-6 max-w-sm m-auto bg-gray-200 rounded-xl shadow-md items-center">
       <div class="text-xl font-medium text-black">Fall from Height</div>
       <div>
-        <button @click="openThreatModal()">
+        <button @click="emit('openAddThreatModal')">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-10 w-10"
@@ -13,7 +13,7 @@
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
           </svg>
         </button>
-        <button @click="openConsequenseModal()">
+        <button @click="emit('openAddConsequenseModal')">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-10 w-10"
@@ -26,38 +26,15 @@
       </div>
     </div>
   </div>
-  <add-threat-modal v-if="threatModal" @closeModal="threatModal = false" />
-  <add-consequense-modal v-if="consequenseModal" @closeModal="consequenseModal = false" />
 </template>
 
 <script>
-import { ref } from 'vue'
-import AddThreatModal from '@/components/threats/AddThreatModal'
-import AddConsequenseModal from '@/components/consequenses/AddConsequenseModal'
 export default {
   name: 'MainHazard',
-  setup() {
-    const threatModal = ref(false)
-    const consequenseModal = ref(false)
-
-    function openThreatModal() {
-      threatModal.value = true
-    }
-
-    function openConsequenseModal() {
-      consequenseModal.value = true
-    }
-
+  setup(props, { emit }) {
     return {
-      threatModal,
-      consequenseModal,
-      openThreatModal,
-      openConsequenseModal,
+      emit,
     }
-  },
-  components: {
-    AddThreatModal,
-    AddConsequenseModal,
   },
 }
 </script>

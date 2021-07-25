@@ -45,6 +45,12 @@
       "threatName": "Phishing emails",
       "body": "Our staff is not trained to deal with unknown emails",
       "threatLevel": "Low"
+    },
+    {
+      "id": 0.4497732619449355,
+      "threatName": "testing",
+      "body": "Our staff is not trained to deal with unknown emails",
+      "threatLevel": "Low"
     }
   ],
   "consequenses": [
@@ -62,6 +68,11 @@
       "id": 3,
       "consequenseName": "Loss of reputation",
       "body": "Trying to maintain our good reputation"
+    },
+    {
+      "id": 0.9464132116096722,
+      "consequenseName": "testing",
+      "body": "Our staff is not trained to deal with unknown emails"
     }
   ]
 }
