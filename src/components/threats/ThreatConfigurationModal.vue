@@ -14,7 +14,7 @@
             </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
               <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                Threat Configuration
+                Threat Configuration {{ threat.threatName }}
               </h3>
               <div class="mt-2">
                 <input v-model="consequense" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
@@ -41,13 +41,16 @@
 
 export default {
   name: 'ThreatConfigurationModal',
-  setup(props, { emit }) {
-    const getThreatDetails = (threat) => {
-      console.log(threat)
+  props: {
+    threat: {
+      type: Array,
+      required: true,
     }
+  },
+  setup(props, { emit }) {
+    console.log('prooopr', props)
     return {
       emit,
-      getThreatDetails,
     }
   },
 }

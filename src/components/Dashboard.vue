@@ -3,7 +3,7 @@
     <div ref="parent" class="grid grid-cols-3 gap-4">
       <div id="link">
         <transition-group name="fade">
-          <threat-card v-for="(threat, index) in threats" :key="index" :threat="threat" @threat="selectedThreat" />
+          <threat-card v-for="(threat, index) in threats" :key="index" :threat="threat" @threat="selectedThreat" @openThreatConfigurationModal="configureThreatModal" />
         </transition-group>
       </div>
       <main-hazard @openAddThreatModal="newThreatModal" @openAddConsequenseModal="newConsequenseModal" />
@@ -12,8 +12,9 @@
       </div>
     </div>
   </div>
-  <add-threat-modal v-if="openaddNewThreatModal" @closeModal="openaddNewThreatModal = false" />
+  <add-threat-modal v-if="openAddNewThreatModal" @closeModal="openAddNewThreatModal = false" />
   <add-consequense-modal v-if="openAddNewConsequenseModal" @closeModal="openAddNewConsequenseModal = false" />
+  <threat-configuration-modal v-if="openThreatConfigurationModal" :threat="threat" @closeModal="openThreatConfigurationModal = false" />
 </template>
 
 <script>
@@ -22,35 +23,43 @@ import axios from 'axios'
 import ThreatCard from '@/components/threats/ThreatCard'
 import ConsequenseCard from '@/components/consequenses/ConsequenseCard'
 import MainHazard from '@/components/MainHazard'
-import { ref, onMounted } from 'vue'
-import { createClient } from '@supabase/supabase-js'
+import { toRefs, onMounted, reactive } from 'vue'
+// import { createClient } from '@supabase/supabase-js'
 import AddThreatModal from '@/components/threats/AddThreatModal'
 import AddConsequenseModal from '@/components/consequenses/AddConsequenseModal'
+import ThreatConfigurationModal from '@/components/threats/ThreatConfigurationModal'
 
 export default {
   name: 'Dashboard',
   async setup() {
-    const threats = ref([])
-    const consequenses = ref([])
-    const openaddNewThreatModal = ref(false)
-    const openAddNewConsequenseModal = ref(false)
+    const state = reactive({
+      threats: [],
+      consequenses: [],
+      openAddNewThreatModal: false,
+      openAddNewConsequenseModal: false,
+      openThreatConfigurationModal: false,
+    })
 
-    const supabaseUrl = 'https://bziwylywiblkrqzcdpgd.supabase.co'
-    const supabaseKey = process.env.SUPABASE_KEY
-    const supabase = createClient(supabaseUrl, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNzE2NTA2NywiZXhwIjoxOTQyNzQxMDY3fQ.pWlhjDMRbXbopftW7vko7U4iWAOg157YQJXQ3KNhjJ4')
+    // const supabaseUrl = 'https://bziwylywiblkrqzcdpgd.supabase.co'
+    // const supabaseKey = process.env.SUPABASE_KEY
+    // const supabase = createClient(supabaseUrl, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNzE2NTA2NywiZXhwIjoxOTQyNzQxMDY3fQ.pWlhjDMRbXbopftW7vko7U4iWAOg157YQJXQ3KNhjJ4')
 
     const fetchThreats = () => {
       return axios.get('http://localhost:3000/threats').then((response) => {
-        threats.value = response.data
+        state.threats = response.data
       })
     }
 
     const newThreatModal = () => {
-      openaddNewThreatModal.value = true
+      state.openAddNewThreatModal = true
     }
 
     const newConsequenseModal = () => {
-      openAddNewConsequenseModal.value = true
+      state.openAddNewConsequenseModal = true
+    }
+
+    const configureThreatModal = () => {
+      state.openThreatConfigurationModal = true
     }
 
   //   let { data: threat, error } = await supabase
@@ -63,14 +72,14 @@ export default {
       return axios
         .get('http://localhost:3000/consequenses')
         .then((response) => {
-          consequenses.value = response.data
+          state.consequenses = response.data
         })
     }
 
     const selectedThreat = (threat) => {
       axios.delete('http://localhost:3000/threats/' + threat.id).then(() => {
-        const threatId = threats.value.indexOf(threat)
-        threats.value.splice(threatId, 1)
+        const threatId = state.threats.indexOf(threat)
+        state.threats.splice(threatId, 1)
       })
     }
 
@@ -87,15 +96,13 @@ export default {
     })
 
     return {
-      threats,
-      consequenses,
+      ...toRefs(state),
+      configureThreatModal,
       selectedThreat,
       fetchThreats,
       fetchConsequenses,
       newThreatModal,
       newConsequenseModal,
-      openaddNewThreatModal,
-      openAddNewConsequenseModal,
     }
   },
   components: {
@@ -104,6 +111,7 @@ export default {
     MainHazard,
     AddThreatModal,
     AddConsequenseModal,
+    ThreatConfigurationModal,
   },
   mounted() {
     const element = this.$refs.parent
