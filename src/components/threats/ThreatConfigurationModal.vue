@@ -13,9 +13,8 @@
               </svg>
             </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-              <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                Threat Configuration {{ threat.threatName }}
-              </h3>
+              <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Threat Configuration</h3>
+              <p>{{ selectedThreat }}</p>
               <div class="mt-2">
                 <input v-model="consequense" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
               </div>
@@ -42,13 +41,12 @@
 export default {
   name: 'ThreatConfigurationModal',
   props: {
-    threat: {
-      type: Array,
+    selectedThreat: {
+      type: Object,
       required: true,
-    }
+    },
   },
   setup(props, { emit }) {
-    console.log('prooopr', props)
     return {
       emit,
     }

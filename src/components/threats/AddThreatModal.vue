@@ -20,7 +20,7 @@
                 <input v-model="threat" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatName" type="text" placeholder="Threat name">
               </div>
               <div class="mt-2">
-                <input v-model="threatExplainer" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatExplainer" type="text" placeholder="Threat explaination">
+                <input v-model="threatDescription" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatExplainer" type="text" placeholder="Threat explaination">
               </div>
             </div>
           </div>
@@ -46,13 +46,14 @@ export default {
   name: 'AddThreatModal',
   setup(props, { emit }) {
     const threat = ref('')
+    const threatDescription = ref('')
 
     const addThreat = () => {
       axios
         .post('http://localhost:3000/threats', {
           id: Math.random(),
           threatName: threat.value,
-          body: 'Our staff is not trained to deal with unknown emails',
+          body: threatDescription.value,
           threatLevel: 'Low',
         })
         .then(function (response) {
@@ -66,6 +67,7 @@ export default {
     return {
       emit,
       threat,
+      threatDescription,
       addThreat,
     }
   },

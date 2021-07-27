@@ -3,7 +3,7 @@
     <div ref="parent" class="grid grid-cols-3 gap-4">
       <div id="link">
         <transition-group name="fade">
-          <threat-card v-for="(threat, index) in threats" :key="index" :threat="threat" @threat="selectedThreat" @openThreatConfigurationModal="configureThreatModal" />
+          <threat-card v-for="(threat, index) in threats" :key="index" :threat="threat" @openThreatConfigurationModal="configureThreatModal(threat)" />
         </transition-group>
       </div>
       <main-hazard @openAddThreatModal="newThreatModal" @openAddConsequenseModal="newConsequenseModal" />
@@ -14,7 +14,7 @@
   </div>
   <add-threat-modal v-if="openAddNewThreatModal" @closeModal="openAddNewThreatModal = false" />
   <add-consequense-modal v-if="openAddNewConsequenseModal" @closeModal="openAddNewConsequenseModal = false" />
-  <threat-configuration-modal v-if="openThreatConfigurationModal" :threat="threat" @closeModal="openThreatConfigurationModal = false" />
+  <threat-configuration-modal v-if="openThreatConfigurationModal" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
 </template>
 
 <script>
@@ -34,6 +34,7 @@ export default {
   async setup() {
     const state = reactive({
       threats: [],
+      selectedThreat: {},
       consequenses: [],
       openAddNewThreatModal: false,
       openAddNewConsequenseModal: false,
@@ -58,8 +59,10 @@ export default {
       state.openAddNewConsequenseModal = true
     }
 
-    const configureThreatModal = () => {
+    const configureThreatModal = (threat) => {
       state.openThreatConfigurationModal = true
+      state.selectedThreat = threat
+      console.log('selected threat', threat)
     }
 
   //   let { data: threat, error } = await supabase
@@ -76,12 +79,12 @@ export default {
         })
     }
 
-    const selectedThreat = (threat) => {
-      axios.delete('http://localhost:3000/threats/' + threat.id).then(() => {
-        const threatId = state.threats.indexOf(threat)
-        state.threats.splice(threatId, 1)
-      })
-    }
+    // const selectedThreat = (threat) => {
+    //   axios.delete('http://localhost:3000/threats/' + threat.id).then(() => {
+    //     const threatId = state.threats.indexOf(threat)
+    //     state.threats.splice(threatId, 1)
+    //   })
+    // }
 
     // const addBarrier = (threat) => {
     //   axios.put('http://localhost:3000/threats/threats/barriers' + threat.id).then(() => {
@@ -98,7 +101,7 @@ export default {
     return {
       ...toRefs(state),
       configureThreatModal,
-      selectedThreat,
+      // selectedThreat,
       fetchThreats,
       fetchConsequenses,
       newThreatModal,

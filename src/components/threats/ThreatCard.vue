@@ -1,6 +1,6 @@
 <template>
   <div class="flex float-right">
-    <div @click="emit('openThreatConfigurationModal')" class="m-6 p-6 h-40 w-80 group hover:bg-white hover:shadow-lg hover:border-transparent transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 bg-white rounded-xl shadow-md flex items-center space-x-4">
+    <div @click="emit('openThreatConfigurationModal', threat)" class="m-6 p-6 h-40 w-80 cursor-pointer group hover:bg-white hover:shadow-lg hover:border-transparent transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 bg-white rounded-xl shadow-md flex items-center space-x-4">
       <div>
         <div class="text-xl font-medium text-black">{{ threat.threatName }}</div>
         <p class="text-gray-500">{{ threat.body }}</p>
@@ -17,11 +17,18 @@
 
 <script>
 import BarrierCard from '@/components/threats/BarrierCard'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 export default {
   name: 'ThreatCard',
+  props: {
+    threat: {
+      type: Object,
+      required: true,
+    },
+  },
   setup(props, { emit }) {
+    const openThreatConfigurationModal = ref(false)
 
     const getThreatClass = computed(() => {
       return props.threat.threatLevel === 'Medium'
@@ -37,16 +44,11 @@ export default {
       emit,
       computed,
       getThreatClass,
+      openThreatConfigurationModal,
     }
   },
   components: {
     BarrierCard,
-  },
-  props: {
-    threat: {
-      type: Object,
-      required: true,
-    },
   },
 }
 </script>
