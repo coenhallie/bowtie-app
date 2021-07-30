@@ -14,7 +14,7 @@
   </div>
   <add-threat-modal v-if="openAddNewThreatModal" @closeModal="openAddNewThreatModal = false" />
   <add-consequense-modal v-if="openAddNewConsequenseModal" @closeModal="openAddNewConsequenseModal = false" />
-  <threat-configuration-modal v-if="openThreatConfigurationModal" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
+  <threat-configuration-modal v-model:threatName="threatName" v-model:threatDescription="threatDescription" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
 </template>
 
 <script>
@@ -41,6 +41,11 @@ export default {
       openThreatConfigurationModal: false,
     })
 
+    const threatDetails = reactive({
+      threatName: '',
+      threatDescription: '',
+    })
+
     // const supabaseUrl = 'https://bziwylywiblkrqzcdpgd.supabase.co'
     // const supabaseKey = process.env.SUPABASE_KEY
     // const supabase = createClient(supabaseUrl, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNzE2NTA2NywiZXhwIjoxOTQyNzQxMDY3fQ.pWlhjDMRbXbopftW7vko7U4iWAOg157YQJXQ3KNhjJ4')
@@ -62,7 +67,6 @@ export default {
     const configureThreatModal = (threat) => {
       state.openThreatConfigurationModal = true
       state.selectedThreat = threat
-      console.log('selected threat', threat)
     }
 
   //   let { data: threat, error } = await supabase
@@ -79,12 +83,13 @@ export default {
         })
     }
 
-    // const selectedThreat = (threat) => {
-    //   axios.delete('http://localhost:3000/threats/' + threat.id).then(() => {
-    //     const threatId = state.threats.indexOf(threat)
-    //     state.threats.splice(threatId, 1)
-    //   })
-    // }
+    const removeThreat = (threat) => {
+      axios.delete('http://localhost:3000/threats/' + threat.id).then(() => {
+        const threatId = state.threats.indexOf(threat)
+        state.threats.splice(threatId, 1)
+        state.openThreatConfigurationModal = false
+      })
+    }
 
     // const addBarrier = (threat) => {
     //   axios.put('http://localhost:3000/threats/threats/barriers' + threat.id).then(() => {
@@ -100,11 +105,12 @@ export default {
 
     return {
       ...toRefs(state),
+      ...toRefs(threatDetails),
       configureThreatModal,
-      // selectedThreat,
       fetchThreats,
       fetchConsequenses,
       newThreatModal,
+      removeThreat,
       newConsequenseModal,
     }
   },

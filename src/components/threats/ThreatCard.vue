@@ -3,7 +3,7 @@
     <div @click="emit('openThreatConfigurationModal', threat)" class="m-6 p-6 h-40 w-80 cursor-pointer group hover:bg-white hover:shadow-lg hover:border-transparent transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 bg-white rounded-xl shadow-md flex items-center space-x-4">
       <div>
         <div class="text-xl font-medium text-black">{{ threat.threatName }}</div>
-        <p class="text-gray-500">{{ threat.body }}</p>
+        <p class="text-gray-500">{{ threat.threatDescription }}</p>
         <p :class="getThreatClass">Risk: <b>{{ threat.threatLevel }}</b></p>
       </div>
     </div>
