@@ -14,7 +14,7 @@
   </div>
   <add-threat-modal v-if="openAddNewThreatModal" @closeModal="openAddNewThreatModal = false" />
   <add-consequense-modal v-if="openAddNewConsequenseModal" @closeModal="openAddNewConsequenseModal = false" />
-  <threat-configuration-modal v-model:threatName="threatName" v-model:threatDescription="threatDescription" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
+  <threat-configuration-modal @changeThreatData="changeThreatData(selectedThreat.id)" v-model:threatName="threatName" v-model:threatDescription="threatDescription" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
 </template>
 
 <script>
@@ -55,6 +55,14 @@ export default {
         state.threats = response.data
       })
     }
+    const changeThreatData = (id) => {
+      const foundIndex = state.threats.findIndex((element) => element.id === id)
+      let newArray = [...state.threats]
+      newArray[foundIndex] = { ...newArray[foundIndex], ...threatDetails }
+      state.threats = newArray
+      state.openThreatConfigurationModal = false
+    }
+
 
     const newThreatModal = () => {
       state.openAddNewThreatModal = true
@@ -112,6 +120,7 @@ export default {
       newThreatModal,
       removeThreat,
       newConsequenseModal,
+      changeThreatData,
     }
   },
   components: {
