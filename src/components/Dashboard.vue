@@ -12,9 +12,15 @@
       </div>
     </div>
   </div>
-  <add-threat-modal v-if="openAddNewThreatModal" @closeModal="openAddNewThreatModal = false" />
-  <add-consequense-modal v-if="openAddNewConsequenseModal" @closeModal="openAddNewConsequenseModal = false" />
-  <threat-configuration-modal @changeThreatData="changeThreatData(selectedThreat.id)" v-model:threatName="threatName" v-model:threatDescription="threatDescription" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
+  <transition name="fade">
+    <add-threat-modal v-if="openAddNewThreatModal" @closeModal="openAddNewThreatModal = false" @newThreatAdded="fetchThreats()" />
+  </transition>
+  <transition name="fade">
+    <add-consequense-modal v-if="openAddNewConsequenseModal" @closeModal="openAddNewConsequenseModal = false" @newConsequenseAdded="fetchConsequenses()" />
+  </transition>
+  <transition name="fade">
+    <threat-configuration-modal @changeThreatData="changeThreatData(selectedThreat.id)" v-model:threatName="threatName" v-model:threatDescription="threatDescription" v-model:threatLevel="threatLevel" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
+  </transition>
 </template>
 
 <script>
@@ -44,6 +50,7 @@ export default {
     const threatDetails = reactive({
       threatName: '',
       threatDescription: '',
+      threatLevel: '',
     })
 
     // const supabaseUrl = 'https://bziwylywiblkrqzcdpgd.supabase.co'
@@ -60,9 +67,14 @@ export default {
       let newArray = [...state.threats]
       newArray[foundIndex] = { ...newArray[foundIndex], ...threatDetails }
       state.threats = newArray
+      // axios.post('http://localhost:3000/threats', JSON.stringify(state.threats), {
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   }
+      // })
+      fetchThreats()
       state.openThreatConfigurationModal = false
     }
-
 
     const newThreatModal = () => {
       state.openAddNewThreatModal = true

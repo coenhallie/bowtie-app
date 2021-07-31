@@ -14,7 +14,6 @@
             </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
               <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Threat Configuration</h3>
-              <p>{{ selectedThreat }}</p>
               <div class="mt-2">
                 <label class="font-bold" for="threatName"> Threat name:</label>
                 <input :placeholder="selectedThreat.threatName" :value="threatName" @input="$emit('update:threatName', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatName" type="text">
@@ -22,6 +21,10 @@
               <div class="mt-2">
                 <label class="font-bold" for="threatDescription"> Threat name:</label>
                 <input :placeholder="selectedThreat.threatDescription" :value="threatDescription" @input="$emit('update:threatDescription', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatDescription" type="text">
+              </div>
+              <div class="mt-2">
+                <label class="font-bold" for="threatDescription"> Threat Level:</label>
+                <input :placeholder="selectedThreat.threatLevel" :value="threatLevel" @input="$emit('update:threatLevel', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatLevel" type="text">
               </div>
             </div>
           </div>
@@ -57,6 +60,11 @@ export default {
       required: true,
     },
     threatDescription: {
+      type: String,
+      default: '',
+      required: true,
+    },
+    threatLevel: {
       type: String,
       default: '',
       required: true,

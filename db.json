@@ -3,7 +3,7 @@
     {
       "id": 1,
       "threatName": "DDos attack",
-      "body": "It is possible to target our central server with a DDos attack",
+      "threatDescription": "It is possible to target our central server with a DDos attack",
       "threatLevel": "High",
       "barriers": [
         {
@@ -29,7 +29,7 @@
     {
       "id": 2,
       "threatName": "SQL Injection",
-      "body": "We have hundreds of untested input fields which could be injected with malicious code",
+      "threatDescription": "We have hundreds of untested input fields which could be injected with malicious code",
       "threatLevel": "Medium",
       "barriers": [
         {
@@ -43,13 +43,19 @@
     {
       "id": 3,
       "threatName": "Phishing emails",
-      "body": "Our staff is not trained to deal with unknown emails",
+      "threatDescription": "Our staff is not trained to deal with unknown emails",
       "threatLevel": "Low"
     },
     {
       "id": 0.4497732619449355,
       "threatName": "testing",
-      "body": "Our staff is not trained to deal with unknown emails",
+      "threatDescription": "Our staff is not trained to deal with unknown emails",
+      "threatLevel": "Low"
+    },
+    {
+      "id": 0.06267061361171367,
+      "threatName": "tsetse",
+      "body": "efkspeofkspeffsf",
       "threatLevel": "Low"
     }
   ],
@@ -72,6 +78,21 @@
     {
       "id": 0.9464132116096722,
       "consequenseName": "testing",
+      "body": "Our staff is not trained to deal with unknown emails"
+    },
+    {
+      "id": 0.29553992253906225,
+      "consequenseName": "mlkmlmlkm",
+      "body": "Our staff is not trained to deal with unknown emails"
+    },
+    {
+      "id": 0.7878121146967185,
+      "consequenseName": "okprkefre",
+      "body": "Our staff is not trained to deal with unknown emails"
+    },
+    {
+      "id": 0.09973458191397477,
+      "consequenseName": "efaweaefa",
       "body": "Our staff is not trained to deal with unknown emails"
     }
   ]
