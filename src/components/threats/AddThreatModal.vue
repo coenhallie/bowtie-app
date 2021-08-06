@@ -24,6 +24,10 @@
                 <label class="font-bold" for="threatDescription"> Threat description:</label>
                 <input v-model="threatDescription" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatDescription" type="text" placeholder="Threat description">
               </div>
+              <div class="mt-2">
+                <label class="font-bold" for="threatLevel"> Threat Level:</label>
+                <input v-model="threatLevel" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatLevel" type="text" placeholder="Threat Level">
+              </div>
             </div>
           </div>
         </div>

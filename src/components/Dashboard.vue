@@ -19,7 +19,10 @@
     <add-consequense-modal v-if="openAddNewConsequenseModal" @closeModal="openAddNewConsequenseModal = false" @newConsequenseAdded="fetchConsequenses()" />
   </transition>
   <transition name="fade">
-    <threat-configuration-modal @changeThreatData="changeThreatData(selectedThreat.id)" v-model:threatName="threatName" v-model:threatDescription="threatDescription" v-model:threatLevel="threatLevel" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
+    <add-barrier-modal v-if="openAddNewBarrierModal" @closeModal="openAddNewBarrierModal = false"  @newBarrierAdded="fetchThreats()" />
+  </transition>
+  <transition name="fade">
+    <threat-configuration-modal @changeThreatData="changeThreatData(selectedThreat.id)" @openAddBarrierModal="newBarrierModal" v-model:threatName="threatName" v-model:threatDescription="threatDescription" v-model:threatLevel="threatLevel" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
   </transition>
   <transition name="fade">
     <barrier-configuration-modal :barrier="barrier" @changeBarrierData="changeBarrierData(selectedBarrier.id)" v-model:barrierName="barrierName" v-model:barrierDescription="barrierDescription" v-model:barrierLevel="barrierLevel" v-if="openBarrierConfigurationModal" @removeBarrier="removeBarrier(selectedBarrier)" :selectedBarrier="selectedBarrier" @closeModal="openBarrierConfigurationModal = false" />
@@ -39,6 +42,7 @@ import { toRefs, onMounted, reactive } from 'vue'
 // import { createClient } from '@supabase/supabase-js'
 import AddThreatModal from '@/components/threats/AddThreatModal'
 import AddConsequenseModal from '@/components/consequenses/AddConsequenseModal'
+import AddBarrierModal from '@/components/barriers/AddBarrierModal'
 import ThreatConfigurationModal from '@/components/threats/ThreatConfigurationModal'
 import BarrierConfigurationModal from '@/components/barriers/BarrierConfigurationModal'
 import ConsequenseConfigurationModal from '@/components/consequenses/ConsequenseConfigurationModal'
@@ -54,6 +58,7 @@ export default {
       selectedConsequense: {},
       consequenses: [],
       openAddNewThreatModal: false,
+      openAddNewBarrierModal: false,
       openAddNewConsequenseModal: false,
       openThreatConfigurationModal: false,
       openBarrierConfigurationModal: false,
@@ -149,6 +154,7 @@ export default {
     }
 
     const newBarrierModal = () => {
+      state.openThreatConfigurationModal = false
       state.openAddNewBarrierModal = true
     }
 
@@ -233,6 +239,7 @@ export default {
     MainHazard,
     AddThreatModal,
     AddConsequenseModal,
+    AddBarrierModal,
     ThreatConfigurationModal,
     BarrierConfigurationModal,
     ConsequenseConfigurationModal,

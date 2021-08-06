@@ -14,22 +14,22 @@
             </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
               <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                Add Consequense
+                Add Barrier
               </h3>
               <div class="mt-2">
-                <label class="font-bold" for="consequenseName"> Consequense name:</label>
-                <input v-model="consequenseName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="consequenseName" type="text" placeholder="Consequense name">
+                <label class="font-bold" for="barrierName"> Barrier name:</label>
+                <input v-model="barrierName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="barrierName" type="text" placeholder="Barrier name">
               </div>
               <div class="mt-2">
-                <label class="font-bold" for="consequenseDescription"> Consequense Descripion:</label>
-                <input v-model="consequenseDescription" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="consequenseDescription" type="text" placeholder="Consequense Description">
+                <label class="font-bold" for="barrierDescription"> Barrier Descripion:</label>
+                <input v-model="barrierDescription" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="barrierDescription" type="text" placeholder="Barrier Description">
               </div>
             </div>
           </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button @click="addConsequense" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
-            Add Consequense
+          <button @click="addBarrier" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+            Add Barrier
           </button>
           <button @click="emit('closeModal')" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
             Cancel
@@ -45,22 +45,21 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 export default {
-  name: 'AddConsequenseModal',
+  name: 'AddBarrierModal',
   setup(props, { emit }) {
-    const consequenseName = ref('')
-    const consequenseDescription = ref('')
+    const barrierName = ref('')
+    const barrierDescription = ref('')
 
-    const addConsequense = () => {
+    const addBarrier = (id) => {
       axios
-        .post('http://localhost:3000/consequenses', {
+        .post('http://localhost:3000/threat' + id, {
           id: Math.random(),
-          consequenseName: consequenseName.value,
-          consequenseDescription: consequenseDescription.value,
+          barrierName: barrierName.value,
+          barrierDescription: barrierDescription.value,
         })
-        .then(function (response) {
-          console.log(response)
+        .then(function () {
           emit('closeModal')
-          emit('newConsequenseAdded')
+          emit('newBarrierAdded')
         })
         .catch(function (error) {
           console.log(error)
@@ -68,9 +67,9 @@ export default {
     }
     return {
       emit,
-      consequenseName,
-      consequenseDescription,
-      addConsequense,
+      barrierName,
+      barrierDescription,
+      addBarrier,
     }
   },
 }
