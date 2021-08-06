@@ -9,91 +9,72 @@
         {
           "id": 1,
           "barrierName": "Check server configuration",
-          "body": "Check our Windows server config",
+          "barrierDescription": "Check our Windows server config",
           "riskLevel": "High"
         },
         {
           "id": 2,
           "barrierName": "Check backup servers",
-          "body": "Make suer our backup servers run correctly",
+          "barrierDescription": "Make suer our backup servers run correctly",
           "riskLevel": "Medium"
         },
         {
           "id": 3,
           "barrierName": "Any Chinese hardware installed?",
-          "body": "Make sure we dont use any Chinese crap",
+          "barrierDescription": "Make sure we dont use any Chinese crap",
           "riskLevel": "High"
         }
       ]
     },
     {
       "id": 2,
-      "threatName": "SQL Injection",
-      "threatDescription": "We have hundreds of untested input fields which could be injected with malicious code",
-      "threatLevel": "Medium",
+      "threatName": "SQL2 Injection",
+      "threatDescription": "even thousands of bugs we have to solve",
+      "threatLevel": "High",
       "barriers": [
         {
           "id": 1,
           "barrierName": "Sanitize all input fields",
-          "body": "Make sure we can't use script tags in input fields",
+          "barrierDescription": "Make sure we can't use script tags in input fields",
           "riskLevel": "High"
         }
       ]
     },
     {
       "id": 3,
-      "threatName": "Phishing emails",
-      "threatDescription": "Our staff is not trained to deal with unknown emails",
-      "threatLevel": "Low"
+      "threatName": "",
+      "threatDescription": "",
+      "threatLevel": "Low",
+      "barriers": []
     },
     {
-      "id": 0.4497732619449355,
-      "threatName": "testing",
-      "threatDescription": "Our staff is not trained to deal with unknown emails",
-      "threatLevel": "Low"
-    },
-    {
-      "id": 0.06267061361171367,
-      "threatName": "tsetse",
-      "body": "efkspeofkspeffsf",
-      "threatLevel": "Low"
+      "id": 0.8028111591535882,
+      "threatName": "Russian backdoor",
+      "threatDescription": "we've noticed Russian writing in our codebase",
+      "threatLevel": "Low",
+      "barriers": []
     }
   ],
   "consequenses": [
     {
       "id": 1,
       "consequenseName": "Service delivery interrupted",
-      "body": "Not being able to deliver our goods in time"
+      "consequenseDescription": "Not being able to deliver our goods in time"
     },
     {
       "id": 2,
       "consequenseName": "Losing revenue for at least a month",
-      "body": "Revenue we can't miss as our stakeholders expect it"
-    },
-    {
-      "id": 3,
-      "consequenseName": "Loss of reputation",
-      "body": "Trying to maintain our good reputation"
-    },
-    {
-      "id": 0.9464132116096722,
-      "consequenseName": "testing",
-      "body": "Our staff is not trained to deal with unknown emails"
+      "consequenseDescription": "Revenue we can't miss as our stakeholders expect it"
     },
     {
       "id": 0.29553992253906225,
-      "consequenseName": "mlkmlmlkm",
-      "body": "Our staff is not trained to deal with unknown emails"
+      "consequenseName": "Major problemos",
+      "consequenseDescription": "We can't handle shit"
     },
     {
-      "id": 0.7878121146967185,
-      "consequenseName": "okprkefre",
-      "body": "Our staff is not trained to deal with unknown emails"
-    },
-    {
-      "id": 0.09973458191397477,
-      "consequenseName": "efaweaefa",
-      "body": "Our staff is not trained to deal with unknown emails"
+      "id": 0.058250141875479056,
+      "consequenseName": "More workload",
+      "consequenseDescription": "We need more people to work for us"
     }
   ]
 }

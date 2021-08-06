@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-xl font-medium text-black">{{ barrier.barrierName }}</div>
-    <p class="text-gray-500">{{ barrier.body }}</p>
+    <p class="text-gray-500">{{ barrier.barrierDescription }}</p>
   </div>
 </template>
 

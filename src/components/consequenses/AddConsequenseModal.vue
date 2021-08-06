@@ -17,13 +17,18 @@
                 Add Consequense
               </h3>
               <div class="mt-2">
-                <input v-model="consequense" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
+                <label class="font-bold" for="consequenseName"> Consequense name:</label>
+                <input v-model="consequenseName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="consequenseName" type="text" placeholder="Consequense name">
+              </div>
+              <div class="mt-2">
+                <label class="font-bold" for="consequenseDescription"> Consequense Descripion:</label>
+                <input v-model="consequenseDescription" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="consequenseDescription" type="text" placeholder="Consequense Description">
               </div>
             </div>
           </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button @click="addConsequense" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-500 text-base font-medium text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+          <button @click="addConsequense" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
             Add Consequense
           </button>
           <button @click="emit('closeModal')" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
@@ -42,14 +47,15 @@ import axios from 'axios'
 export default {
   name: 'AddConsequenseModal',
   setup(props, { emit }) {
-    const consequense = ref('')
+    const consequenseName = ref('')
+    const consequenseDescription = ref('')
 
     const addConsequense = () => {
       axios
         .post('http://localhost:3000/consequenses', {
           id: Math.random(),
-          consequenseName: consequense.value,
-          body: 'Our staff is not trained to deal with unknown emails',
+          consequenseName: consequenseName.value,
+          consequenseDescription: consequenseDescription.value,
         })
         .then(function (response) {
           console.log(response)
@@ -62,7 +68,8 @@ export default {
     }
     return {
       emit,
-      consequense,
+      consequenseName,
+      consequenseDescription,
       addConsequense,
     }
   },
