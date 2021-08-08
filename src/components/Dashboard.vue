@@ -72,9 +72,9 @@ export default {
     })
 
     const threatDetails = reactive({
-      threatName: state.selectedThreat.threatName,
-      threatDescription: state.selectedThreat.threatDescription,
-      threatLevel: state.selectedThreat.threatLevel,
+      threatName: '',
+      threatDescription: '',
+      threatLevel: '',
     })
 
     const consequenseDetails = reactive({
@@ -129,7 +129,7 @@ export default {
       newArray[foundIndex] = { ...newArray[foundIndex], ...state.selectedBarrier }
       state.threats = newArray
       axios.post('http://localhost:3000/threats', + id, {
-        ...state.selectedBarrier
+        ...state.selectedBarrier,
       })
       fetchThreats()
       state.openBarrierConfigurationModal = false
