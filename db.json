@@ -2,8 +2,8 @@
   "threats": [
     {
       "id": 1,
-      "threatName": "DDos attack",
-      "threatDescription": "It is possible to target our central server with a DDos attack",
+      "threatName": "Severe DDos attacks from China",
+      "threatDescription": "We have sporadic problems with DDos attacks",
       "threatLevel": "High",
       "barriers": [
         {
@@ -28,9 +28,9 @@
     },
     {
       "id": 2,
-      "threatName": "SQL2 Injection",
-      "threatDescription": "even thousands of bugs we have to solve",
-      "threatLevel": "High",
+      "threatName": "SQL2 Injections",
+      "threatDescription": "even thousands of bugs we have toefaeffwa",
+      "threatLevel": "Low",
       "barriers": [
         {
           "id": 1,
@@ -42,16 +42,16 @@
     },
     {
       "id": 3,
-      "threatName": "csdcasdcasdcasdc",
-      "threatDescription": "dcsdcadcsdcs dcasd csdcsdacsadcs",
+      "threatName": "Phone spoofing problemos",
+      "threatDescription": "We use an older Android version, we need to upgrade ASAP",
       "threatLevel": "Medium",
       "barriers": []
     },
     {
       "id": 0.8028111591535882,
       "threatName": "Russian backdoor",
-      "threatDescription": "we've noticed Russian writing in our codebase",
-      "threatLevel": "Low",
+      "threatDescription": "casdcasdcaddddxd",
+      "threatLevel": "High",
       "barriers": []
     }
   ],
@@ -68,8 +68,8 @@
     },
     {
       "id": 0.29553992253906225,
-      "consequenseName": "Major problemos",
-      "consequenseDescription": "We can't handle shit"
+      "consequenseName": "ewfwqwefqwef",
+      "consequenseDescription": "fwefefs"
     },
     {
       "id": 0.058250141875479056,

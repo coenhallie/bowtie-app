@@ -19,10 +19,10 @@
     <add-consequense-modal v-if="openAddNewConsequenseModal" @closeModal="openAddNewConsequenseModal = false" @newConsequenseAdded="fetchConsequenses()" />
   </transition>
   <transition name="fade">
-    <add-barrier-modal v-if="openAddNewBarrierModal" @closeModal="openAddNewBarrierModal = false"  @newBarrierAdded="fetchThreats()" />
+    <add-barrier-modal v-if="openAddNewBarrierModal" @closeModal="openAddNewBarrierModal = false" @newBarrierAdded="fetchThreats()" />
   </transition>
   <transition name="fade">
-    <threat-configuration-modal @changeThreatData="changeThreatData(selectedThreat.id)" @openAddBarrierModal="newBarrierModal" v-model:threatName="threatName" v-model:threatDescription="threatDescription" v-model:threatLevel="threatLevel" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
+    <threat-configuration-modal @cancelThreatChange="cancelThreatChange" @changeThreatData="changeThreatData(selectedThreat.id)" @openAddBarrierModal="newBarrierModal" v-model:threatName="selectedThreat.threatName" v-model:threatDescription="selectedThreat.threatDescription" v-model:threatLevel="selectedThreat.threatLevel" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
   </transition>
   <transition name="fade">
     <barrier-configuration-modal :barrier="barrier" @changeBarrierData="changeBarrierData(selectedBarrier.id)" v-model:barrierName="barrierName" v-model:barrierDescription="barrierDescription" v-model:barrierLevel="barrierLevel" v-if="openBarrierConfigurationModal" @removeBarrier="removeBarrier(selectedBarrier)" :selectedBarrier="selectedBarrier" @closeModal="openBarrierConfigurationModal = false" />
@@ -65,16 +65,16 @@ export default {
       openConsequenseConfigurationModal: false,
     })
 
-    const threatDetails = reactive({
-      threatName: '',
-      threatDescription: '',
-      threatLevel: '',
-    })
-
     const barrierDetails = reactive({
       barrierName: '',
       barrierDescription: '',
       barrierLevel: '',
+    })
+
+    const threatDetails = reactive({
+      threatName: state.selectedThreat.threatName,
+      threatDescription: state.selectedThreat.threatDescription,
+      threatLevel: state.selectedThreat.threatLevel,
     })
 
     const consequenseDetails = reactive({
@@ -91,17 +91,22 @@ export default {
         state.threats = response.data
       })
     }
+
+    const cancelThreatChange = () => {
+      let clone = { ...state.selectedThreat }
+      state.selectedThreat = clone
+      state.openThreatConfigurationModal = false
+      fetchThreats()
+    }
     const changeThreatData = (id) => {
       const foundIndex = state.threats.findIndex((element) => element.id === id)
       let newArray = [...state.threats]
-      newArray[foundIndex] = { ...newArray[foundIndex], ...threatDetails }
+      newArray[foundIndex] = { ...newArray[foundIndex], ...state.selectedThreat }
       state.threats = newArray
       axios
         .put('http://localhost:3000/threats/' + id, {
           id: id,
-          threatName: threatDetails.threatName,
-          threatDescription: threatDetails.threatDescription,
-          threatLevel: threatDetails.threatLevel,
+          ...state.selectedThreat,
           barriers: [...state.selectedThreat.barriers],
         })
         .then(() => {
@@ -121,13 +126,11 @@ export default {
     const changeBarrierData = (id) => {
       const foundIndex = state.threats.findIndex((element) => element.id === id)
       let newArray = [...state.threats]
-      newArray[foundIndex] = { ...newArray[foundIndex], ...threatDetails }
+      newArray[foundIndex] = { ...newArray[foundIndex], ...state.selectedBarrier }
       state.threats = newArray
-      // axios.post('http://localhost:3000/threats', JSON.stringify(state.threats), {
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   }
-      // })
+      axios.post('http://localhost:3000/threats', + id, {
+        ...state.selectedBarrier
+      })
       fetchThreats()
       state.openBarrierConfigurationModal = false
     }
@@ -163,13 +166,11 @@ export default {
     }
 
     const configureThreatModal = (threat) => {
-      console.log('threat???', threat)
       state.openThreatConfigurationModal = true
       state.selectedThreat = threat
     }
 
     const configureBarrierModal = (barrier) => {
-      console.log('barrier?', barrier)
       state.openBarrierConfigurationModal = true
       state.selectedBarrier = barrier
     }
@@ -227,6 +228,7 @@ export default {
       newBarrierModal,
       newConsequenseModal,
       changeThreatData,
+      cancelThreatChange,
       changeBarrierData,
       changeConsequenseData,
       configureBarrierModal,

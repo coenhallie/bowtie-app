@@ -14,9 +14,9 @@
               </svg>
             </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-              <div class="flex justify-between">
+              <div class="flex justify-between items-center">
                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Threat Configuration</h3>
-                <b @click="emit('openAddBarrierModal')">Add barrier</b>
+                <b class="p-1 px-4 cursor-pointer rounded-md border border-gray-400" @click="emit('openAddBarrierModal')">Add barrier</b>
               </div>
               <div class="mt-2">
                 <label class="font-bold" for="threatName"> Threat name:</label>
@@ -26,9 +26,13 @@
                 <label class="font-bold" for="threatDescription"> Threat name:</label>
                 <input :placeholder="selectedThreat.threatDescription" :value="threatDescription" @input="$emit('update:threatDescription', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatDescription" type="text">
               </div>
-              <div class="mt-2">
+              <div class="flex justify-between items-center mt-4">
                 <label class="font-bold" for="threatLevel"> Threat Level:</label>
-                <input :placeholder="selectedThreat.threatLevel" :value="threatLevel" @input="$emit('update:threatLevel', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatLevel" type="text">
+                <div class="flex justify-center rounded text-md" role="group">
+                  <button @click="$emit('update:threatLevel', 'Low')" class="bg-white text-gray-700 hover:bg-yellow-300 hover:text-white border border-r-0 border-gray-700 rounded-l px-4 py-1 outline-none focus:shadow-outline">Low</button>
+                  <button @click="$emit('update:threatLevel', 'Medium')" class="bg-white text-gray-700 hover:bg-yellow-500 hover:text-white border border-gray-700  px-4 py-1 outline-none focus:shadow-outline">Medium</button>
+                  <button @click="$emit('update:threatLevel', 'High')" class="bg-white text-gray-700 hover:bg-red-500 hover:text-white border border-l-0 border-gray-700 rounded-r px-4 py-1 outline-none focus:shadow-outline">High</button>
+                </div>
               </div>
             </div>
           </div>
@@ -40,7 +44,7 @@
           <button @click="emit('removeThreat', selectedThreat)" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
             Remove Threat
           </button>
-          <button @click="emit('closeModal')" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+          <button @click="emit('cancelThreatChange')" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
             Cancel
           </button>
         </div>

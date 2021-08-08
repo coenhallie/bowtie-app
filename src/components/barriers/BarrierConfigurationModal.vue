@@ -16,18 +16,18 @@
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
               <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Barrier Configuration</h3>
               {{ barrier }}
-              <!-- <div class="mt-2">
+              <div class="mt-2">
                 <label class="font-bold" for="barrierName"> Barrier name:</label>
                 <input :placeholder="selectedBarrier.barrierName" :value="barrierName" @input="$emit('update:barrierName', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="barrierName" type="text">
-              </div> -->
+              </div>
               <div class="mt-2">
                 <label class="font-bold" for="barrierDescription"> Barrier name:</label>
                 <input :placeholder="selectedBarrier" :value="barrierDescription" @input="$emit('update:barrierDescription', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="barrierDescription" type="text">
               </div>
-              <div class="mt-2">
+              <!-- <div class="mt-2">
                 <label class="font-bold" for="barrierLevel"> Barrier Level:</label>
                 <input :placeholder="selectedBarrier" :value="barrierLevel" @input="$emit('update:barrierLevel', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="barrierLevel" type="text">
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
