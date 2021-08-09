@@ -24,10 +24,6 @@
                 <label class="font-bold" for="barrierDescription"> Barrier name:</label>
                 <input :placeholder="selectedBarrier" :value="barrierDescription" @input="$emit('update:barrierDescription', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="barrierDescription" type="text">
               </div>
-              <!-- <div class="mt-2">
-                <label class="font-bold" for="barrierLevel"> Barrier Level:</label>
-                <input :placeholder="selectedBarrier" :value="barrierLevel" @input="$emit('update:barrierLevel', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="barrierLevel" type="text">
-              </div> -->
             </div>
           </div>
         </div>
@@ -48,7 +44,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'BarrierConfigurationModal',
   props: {
@@ -66,11 +61,6 @@ export default {
       required: true,
     },
     barrierDescription: {
-      type: String,
-      default: '',
-      required: true,
-    },
-    barrierLevel: {
       type: String,
       default: '',
       required: true,

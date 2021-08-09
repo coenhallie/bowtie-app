@@ -46,16 +46,22 @@ import axios from 'axios'
 
 export default {
   name: 'AddBarrierModal',
-  setup(props, { emit }) {
+  setup(props, { emit, attrs }) {
     const barrierName = ref('')
     const barrierDescription = ref('')
 
-    const addBarrier = (id) => {
+    const addBarrier = () => {
       axios
-        .post('http://localhost:3000/threat' + id, {
-          id: Math.random(),
-          barrierName: barrierName.value,
-          barrierDescription: barrierDescription.value,
+        .patch('http://localhost:3000/threats/' + attrs.selectedThreat.id, {
+          ...attrs.selectedThreat,
+          barriers: [
+            ...attrs.selectedThreat.barriers,
+            {
+              id: Math.random(),
+              barrierName: barrierName.value,
+              barrierDescription: barrierDescription.value,
+            },
+          ],
         })
         .then(function () {
           emit('closeModal')
@@ -67,6 +73,7 @@ export default {
     }
     return {
       emit,
+      attrs,
       barrierName,
       barrierDescription,
       addBarrier,

@@ -19,7 +19,7 @@
     <add-consequense-modal v-if="openAddNewConsequenseModal" @closeModal="openAddNewConsequenseModal = false" @newConsequenseAdded="fetchConsequenses()" />
   </transition>
   <transition name="fade">
-    <add-barrier-modal v-if="openAddNewBarrierModal" @closeModal="openAddNewBarrierModal = false" @newBarrierAdded="fetchThreats()" />
+    <add-barrier-modal :selectedThreat="selectedThreat" v-if="openAddNewBarrierModal" @closeModal="openAddNewBarrierModal = false" @newBarrierAdded="fetchThreats()" />
   </transition>
   <transition name="fade">
     <threat-configuration-modal @cancelThreatChange="cancelThreatChange" @changeThreatData="changeThreatData(selectedThreat.id)" @openAddBarrierModal="newBarrierModal" v-model:threatName="selectedThreat.threatName" v-model:threatDescription="selectedThreat.threatDescription" v-model:threatLevel="selectedThreat.threatLevel" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
@@ -49,7 +49,6 @@ import ConsequenseConfigurationModal from '@/components/consequenses/Consequense
 
 export default {
   name: 'Dashboard',
-  props: {},
   setup() {
     const state = reactive({
       threats: [],

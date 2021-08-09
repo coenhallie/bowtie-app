@@ -23,6 +23,11 @@
           "barrierName": "Any Chinese hardware installed?",
           "barrierDescription": "Make sure we dont use any Chinese crap",
           "riskLevel": "High"
+        },
+        {
+          "id": 0.40548290700166767,
+          "barrierName": "Hire no Chinese employees",
+          "barrierDescription": "They're alays a risk"
         }
       ]
     },
@@ -37,12 +42,17 @@
           "barrierName": "Sanitize all input fields",
           "barrierDescription": "Make sure we can't use script tags in input fields",
           "riskLevel": "High"
+        },
+        {
+          "id": 0.9158785534749196,
+          "barrierName": "grdgrgdr",
+          "barrierDescription": "gdrgdrgdg"
         }
       ]
     },
     {
       "id": 3,
-      "threatName": "Phone spoofing problemos",
+      "threatName": "Phone spoofing",
       "threatDescription": "We use an older Android version, we need to upgrade ASAP",
       "threatLevel": "Medium",
       "barriers": []
@@ -52,7 +62,13 @@
       "threatName": "Russian backdoor",
       "threatDescription": "casdcasdcaddddxd",
       "threatLevel": "High",
-      "barriers": []
+      "barriers": [
+        {
+          "id": 0.04296610557405556,
+          "barrierName": "Finding hidden apps",
+          "barrierDescription": "finding ways to identify malicious code"
+        }
+      ]
     }
   ],
   "consequenses": [
