@@ -16,7 +16,7 @@
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
               <div class="flex justify-between items-center">
                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Threat Configuration</h3>
-                <b class="p-1 px-4 cursor-pointer rounded-md border border-gray-400" @click="emit('openAddBarrierModal')">Add barrier</b>
+                <b class="p-1 px-4 cursor-pointer rounded-md border border-gray-400 hover:bg-gray-100" @click="emit('openAddBarrierModal')">Add barrier</b>
               </div>
               <div class="mt-2">
                 <label class="font-bold" for="threatName"> Threat name:</label>

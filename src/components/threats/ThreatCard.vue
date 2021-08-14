@@ -7,7 +7,7 @@
         <p :class="getThreatClass">Risk: <b>{{ threat.threatLevel }}</b></p>
       </div>
     </div>
-    <div @click="emit('emitSelectedBarrier', threat.barriers[index])" v-for="(barrier, index) in threat.barriers" :key="index" class="threats z-10 m-6 p-6 h-40 w-80 cursor-pointer group hover:bg-blue-200 hover:shadow-lg hover:border-transparent transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 bg-blue-100 rounded-xl shadow-md flex items-center">
+    <div @click="emit('emitSelectedBarrier', 'test')" v-for="(barrier, index) in threat.barriers" :key="index" class="threats z-10 m-6 p-6 h-40 w-80 cursor-pointer group hover:bg-blue-200 hover:shadow-lg hover:border-transparent transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 bg-blue-100 rounded-xl shadow-md flex items-center">
       <barrier-card :barrier="barrier" />
     </div>
   </div>
@@ -25,6 +25,10 @@ export default {
       type: Object,
       required: true,
     },
+    barrier: {
+      type: Object,
+      reqired: true,
+    }
   },
   setup(props, { emit }) {
     const getThreatClass = computed(() => {
@@ -38,7 +42,7 @@ export default {
     })
 
     const getSelectedBarrier = () => {
-      return emit('emitSelectedBarrier', 'fawfawefaw')
+      return emit('emitSelectedBarrier', props.threat.barriers)
     }
 
     return {

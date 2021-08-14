@@ -53,6 +53,7 @@ export default {
   setup(props, { emit }) {
     const threat = ref('')
     const threatDescription = ref('')
+    const threatLevel = ref('')
 
     const addThreat = () => {
       axios
@@ -60,7 +61,8 @@ export default {
           id: Math.random(),
           threatName: threat.value,
           threatDescription: threatDescription.value,
-          threatLevel: 'Low',
+          threatLevel: threatLevel.value,
+          barriers: []
         })
         .then(function () {
           emit('closeModal')
@@ -74,6 +76,7 @@ export default {
       emit,
       threat,
       threatDescription,
+      threatLevel,
       addThreat,
     }
   },

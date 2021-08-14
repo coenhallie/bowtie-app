@@ -13,7 +13,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </div>
-            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <!-- <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
               <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Barrier Configuration</h3>
               {{ barrier }}
               <div class="mt-2">
@@ -24,7 +24,7 @@
                 <label class="font-bold" for="barrierDescription"> Barrier name:</label>
                 <input :placeholder="selectedBarrier" :value="barrierDescription" @input="$emit('update:barrierDescription', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="barrierDescription" type="text">
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

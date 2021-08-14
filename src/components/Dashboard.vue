@@ -3,7 +3,7 @@
     <div ref="parent" class="grid grid-cols-3 gap-4">
       <div class="threat">
         <transition-group name="fade">
-          <threat-card id="threat-card" v-for="(threat, index) in threats" :key="index" :threat="threat" @openThreatConfigurationModal="configureThreatModal(threat)" @emitSelectedBarrier="configureBarrierModal(barrier)" />
+          <threat-card id="threat-card" v-for="(threat, index) in threats" :key="index" :threat="threat" @openThreatConfigurationModal="configureThreatModal(threat)" @emitSelectedBarrier="configureBarrierModal(threat.barriers[1])" />
         </transition-group>
       </div>
       <main-hazard id="main-hazard-card" @openAddThreatModal="newThreatModal" @openAddConsequenseModal="newConsequenseModal" />
@@ -170,6 +170,7 @@ export default {
     }
 
     const configureBarrierModal = (barrier) => {
+      console.log('I CAME HERE', barrier)
       state.openBarrierConfigurationModal = true
       state.selectedBarrier = barrier
     }
