@@ -29,9 +29,9 @@
               <div class="flex justify-between items-center mt-4">
                 <label class="font-bold" for="threatLevel"> Threat Level:</label>
                 <div class="flex justify-center rounded text-md" role="group">
-                  <button @click="$emit('update:threatLevel', 'Low')" class="bg-white text-gray-700 hover:bg-yellow-300 hover:text-white border border-r-0 border-gray-400 rounded-l px-4 py-1 outline-none focus:shadow-outline">Low</button>
-                  <button @click="$emit('update:threatLevel', 'Medium')" class="bg-white text-gray-700 hover:bg-yellow-500 hover:text-white border border-gray-400 px-4 py-1 outline-none focus:shadow-outline">Medium</button>
-                  <button @click="$emit('update:threatLevel', 'High')" class="bg-white text-gray-700 hover:bg-red-500 hover:text-white border border-l-0 border-gray-400 rounded-r px-4 py-1 outline-none focus:shadow-outline">High</button>
+                  <button @click="$emit('update:threatLevel', 'Low')" :class="[selectedThreat.threatLevel === 'Low' ? 'bg-yellow-300 text-white' : 'bg-white text-gray-700']" class="hover:bg-yellow-300 hover:text-white border border-r-0 border-gray-400 rounded-l px-4 py-1 outline-none focus:shadow-outline">Low</button>
+                  <button @click="$emit('update:threatLevel', 'Medium')" :class="[selectedThreat.threatLevel === 'Medium' ? 'bg-yellow-500 text-white' : 'bg-white text-gray-700']" class="bg-white hover:bg-yellow-500 hover:text-white border border-gray-400 px-4 py-1 outline-none focus:shadow-outline">Medium</button>
+                  <button @click="$emit('update:threatLevel', 'High')" :class="[selectedThreat.threatLevel === 'High' ? 'bg-red-500 text-white' : 'bg-white text-gray-700']" class="bg-white hover:bg-red-500 hover:text-white border border-l-0 border-gray-400 rounded-r px-4 py-1 outline-none focus:shadow-outline">High</button>
                 </div>
               </div>
             </div>
