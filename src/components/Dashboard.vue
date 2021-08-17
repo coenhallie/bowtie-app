@@ -22,7 +22,7 @@
     <add-barrier-modal :selectedThreat="selectedThreat" v-if="openAddNewBarrierModal" @closeModal="openAddNewBarrierModal = false" @newBarrierAdded="fetchThreats()" />
   </transition>
   <transition name="fade">
-    <threat-configuration-modal @cancelThreatChange="cancelThreatChange" @changeThreatData="changeThreatData(selectedThreat.id)" @openAddBarrierModal="newBarrierModal" v-model:threatName="selectedThreat.threatName" v-model:threatDescription="selectedThreat.threatDescription" v-model:threatLevel="selectedThreat.threatLevel" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
+    <threat-configuration-modal @cancelThreatChange="cancelThreatChange" @changeThreatData="changeThreatData(selectedThreat.id)" @openAddBarrierModal="newBarrierModal" v-model:threatActor="selectedThreat.threatActor" v-model:threatDescription="selectedThreat.threatDescription" v-model:threatLevel="selectedThreat.threatLevel" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
   </transition>
   <transition name="fade">
     <barrier-configuration-modal :barrier="barrier" @changeBarrierData="changeBarrierData(selectedBarrier.id)" v-model:barrierName="barrierName" v-model:barrierDescription="barrierDescription" v-model:barrierLevel="barrierLevel" v-if="openBarrierConfigurationModal" @removeBarrier="removeBarrier(selectedBarrier)" :selectedBarrier="selectedBarrier" @closeModal="openBarrierConfigurationModal = false" />
@@ -71,7 +71,7 @@ export default {
     })
 
     const threatDetails = reactive({
-      threatName: '',
+      threatActor: '',
       threatDescription: '',
       threatLevel: '',
     })

@@ -19,8 +19,9 @@
                 <b class="p-1 px-4 cursor-pointer rounded-md border border-gray-400 hover:bg-gray-100" @click="emit('openAddBarrierModal')">Add barrier</b>
               </div>
               <div class="mt-2">
-                <label class="font-bold" for="threatName"> Threat name:</label>
-                <input :placeholder="selectedThreat.threatName" :value="threatName" @input="$emit('update:threatName', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatName" type="text">
+                <label class="font-bold" for="threatActor"> Threat Actor:</label>
+                <listbox @selectedThreatActor="myMethodForTheEvent" v-model="threatActor" ref="selectedThreatActor.name"/>
+                <!-- <input :placeholder="selectedThreat.threatActor" :value="threatActor" @input="$emit('update:threatActor', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatActor" type="text"> -->
               </div>
               <div class="mt-2">
                 <label class="font-bold" for="threatDescription"> Threat name:</label>
@@ -54,7 +55,9 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import ConfigurationModal from '../ConfigurationModal'
+import Listbox from '../Listbox'
 export default {
   name: 'ThreatConfigurationModal',
   props: {
@@ -62,16 +65,21 @@ export default {
       type: Object,
       required: true,
     },
-    threatName: {
-      type: String,
-      default: '',
-      required: true,
-    },
+    // threatActor: {
+    //   type: String,
+    //   default: '',
+    //   required: true,
+    // },
     threatDescription: {
       type: String,
       default: '',
       required: true,
     },
+    // selectedThreatActor: {
+    //   type: String,
+    //   default: '',
+    //   required: true,
+    // },
     threatLevel: {
       type: String,
       default: '',
@@ -80,11 +88,16 @@ export default {
   },
   components: {
     ConfigurationModal,
+    Listbox,
   },
   setup(props, { emit }) {
+    const threatActor = ref('')
+
     return {
       emit,
       ConfigurationModal,
+      myMethodForTheEvent,
+      threatActor,
     }
   },
 }

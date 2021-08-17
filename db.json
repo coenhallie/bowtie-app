@@ -2,71 +2,81 @@
   "threats": [
     {
       "id": 1,
-      "threatName": "Severe DDos attacks from China",
+      "threatActor": "Severe DDos attacks from China",
       "threatDescription": "We have sporadic problems with DDos attacks",
       "threatLevel": "High",
       "barriers": [
         {
           "id": 1,
-          "barrierName": "Check server configuration",
+          "barrierName": "Monitor server configuration",
           "barrierDescription": "Check our Windows server config",
-          "riskLevel": "High"
+          "riskNumber": 5
         },
         {
           "id": 2,
           "barrierName": "Check backup servers",
           "barrierDescription": "Make suer our backup servers run correctly",
-          "riskLevel": "Medium"
+          "riskNumber": 2
         },
         {
           "id": 3,
           "barrierName": "Any Chinese hardware installed?",
           "barrierDescription": "Make sure we dont use any Chinese crap",
-          "riskLevel": "High"
+          "riskNumber": "3"
         },
         {
           "id": 0.40548290700166767,
           "barrierName": "Hire no Chinese employees",
-          "barrierDescription": "They're alays a risk"
+          "barrierDescription": "They're alays a risk",
+          "riskNumber": 1
         }
       ]
     },
     {
       "id": 2,
-      "threatName": "SQL2 Injections",
-      "threatDescription": "even thousands of bugs we have toefaeffwa",
-      "threatLevel": "Low",
+      "threatActor": "SQL2 Injections",
+      "threatDescription": "even thousands of bugs we have rayray",
+      "threatLevel": "High",
       "barriers": [
         {
           "id": 1,
           "barrierName": "Sanitize all input fields",
           "barrierDescription": "Make sure we can't use script tags in input fields",
-          "riskLevel": "High"
+          "riskNumber": 2
         },
         {
           "id": 0.9158785534749196,
           "barrierName": "grdgrgdr",
-          "barrierDescription": "gdrgdrgdg"
+          "barrierDescription": "gdrgdrgdg",
+          "riskNumber": 2
         }
       ]
     },
     {
-      "id": 3,
-      "threatName": "Phone spoofing",
-      "threatDescription": "We use an older Android version, we need to upgrade ASAP",
-      "threatLevel": "Medium",
-      "barriers": []
-    },
-    {
       "id": 0.8028111591535882,
-      "threatName": "Russian backdoor",
+      "threatActor": "Russian backdoors",
       "threatDescription": "casdcasdcaddddxd",
-      "threatLevel": "High",
+      "threatLevel": "Medium",
       "barriers": [
         {
           "id": 0.04296610557405556,
           "barrierName": "Finding hidden apps",
-          "barrierDescription": "finding ways to identify malicious code"
+          "barrierDescription": "finding ways to identify malicious code",
+          "riskNumber": 4
+        }
+      ]
+    },
+    {
+      "id": 0.28998557484410026,
+      "threatActor": "insider",
+      "threatDescription": "RayRayhghhgh",
+      "threatLevel": "High",
+      "barriers": [
+        {
+          "id": 0.5322012515495202,
+          "barrierName": "RAYRAY",
+          "barrierDescription": "aap",
+          "riskNumber": 3
         }
       ]
     }
