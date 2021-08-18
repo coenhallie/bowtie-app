@@ -25,7 +25,7 @@
     <threat-configuration-modal @cancelThreatChange="cancelThreatChange" @changeThreatData="changeThreatData(selectedThreat.id)" @openAddBarrierModal="newBarrierModal" v-model:threatActor="selectedThreat.threatActor" v-model:threatDescription="selectedThreat.threatDescription" v-model:threatLevel="selectedThreat.threatLevel" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
   </transition>
   <transition name="fade">
-    <barrier-configuration-modal :barrier="barrier" @changeBarrierData="changeBarrierData(selectedBarrier.id)" v-model:barrierName="barrierName" v-model:barrierDescription="barrierDescription" v-model:barrierLevel="barrierLevel" v-if="openBarrierConfigurationModal" @removeBarrier="removeBarrier(selectedBarrier)" :selectedBarrier="selectedBarrier" @closeModal="openBarrierConfigurationModal = false" />
+    <barrier-configuration-modal :barrier="barrier" @changeBarrierData="changeBarrierData(selectedBarrier.id)" v-model:barrierName="barrierName" v-model:barrierDescription="barrierDescription" v-model:riskNumber="riskNumber" v-if="openBarrierConfigurationModal" @removeBarrier="removeBarrier(selectedBarrier)" :selectedBarrier="selectedBarrier" @closeModal="openBarrierConfigurationModal = false" />
   </transition>
   <transition name="fade">
     <consequense-configuration-modal :consequense="consequense" @changeConsequenseData="changeConsequenseData(selectedConsequense.id)" v-model:consequenseName="consequenseName" v-model:consequenseDescription="consequenseDescription" v-if="openConsequenseConfigurationModal" @removeConsequense="removeConsequense(selectedConsequense)" :selectedConsequense="selectedConsequense" @closeModal="openConsequenseConfigurationModal = false" />
@@ -67,7 +67,7 @@ export default {
     const barrierDetails = reactive({
       barrierName: '',
       barrierDescription: '',
-      barrierLevel: '',
+      riskNumber: 0,
     })
 
     const threatDetails = reactive({

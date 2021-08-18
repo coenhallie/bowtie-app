@@ -24,6 +24,10 @@
                 <label class="font-bold" for="barrierDescription"> Barrier Descripion:</label>
                 <input v-model="barrierDescription" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="barrierDescription" type="text" placeholder="Barrier Description">
               </div>
+              <div class="mt-2">
+                <label class="font-bold" for="riskNumber"> riskNumber:</label>
+                <input v-model="riskNumber" min="0" max="10" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="riskNumber" type="number" placeholder="risk Level">
+              </div>
             </div>
           </div>
         </div>
@@ -49,6 +53,7 @@ export default {
   setup(props, { emit, attrs }) {
     const barrierName = ref('')
     const barrierDescription = ref('')
+    const riskNumber = ref(0)
 
     const addBarrier = () => {
       axios
@@ -60,6 +65,7 @@ export default {
               id: Math.random(),
               barrierName: barrierName.value,
               barrierDescription: barrierDescription.value,
+              riskNumber: parseInt(riskNumber.value),
             },
           ],
         })
@@ -76,6 +82,7 @@ export default {
       attrs,
       barrierName,
       barrierDescription,
+      riskNumber,
       addBarrier,
     }
   },

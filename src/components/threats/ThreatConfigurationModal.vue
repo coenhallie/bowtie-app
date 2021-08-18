@@ -96,7 +96,6 @@ export default {
     return {
       emit,
       ConfigurationModal,
-      myMethodForTheEvent,
       threatActor,
     }
   },

@@ -10,7 +10,7 @@
           "id": 1,
           "barrierName": "Monitor server configuration",
           "barrierDescription": "Check our Windows server config",
-          "riskNumber": 5
+          "riskNumber": 3
         },
         {
           "id": 2,
@@ -22,7 +22,7 @@
           "id": 3,
           "barrierName": "Any Chinese hardware installed?",
           "barrierDescription": "Make sure we dont use any Chinese crap",
-          "riskNumber": "3"
+          "riskNumber": 3
         },
         {
           "id": 0.40548290700166767,
@@ -48,7 +48,7 @@
           "id": 0.9158785534749196,
           "barrierName": "grdgrgdr",
           "barrierDescription": "gdrgdrgdg",
-          "riskNumber": 2
+          "riskNumber": 6
         }
       ]
     },
@@ -63,13 +63,19 @@
           "barrierName": "Finding hidden apps",
           "barrierDescription": "finding ways to identify malicious code",
           "riskNumber": 4
+        },
+        {
+          "id": 0.5557541850282242,
+          "barrierName": "efsef",
+          "barrierDescription": "efsefsefs",
+          "riskNumber": 5
         }
       ]
     },
     {
       "id": 0.28998557484410026,
       "threatActor": "insider",
-      "threatDescription": "RayRayhghhgh",
+      "threatDescription": "RayRay",
       "threatLevel": "High",
       "barriers": [
         {
@@ -77,6 +83,12 @@
           "barrierName": "RAYRAY",
           "barrierDescription": "aap",
           "riskNumber": 3
+        },
+        {
+          "id": 0.4303549325933307,
+          "barrierName": "vdsvs",
+          "barrierDescription": "sdvsdvsdv",
+          "riskNumber": 4
         }
       ]
     }
