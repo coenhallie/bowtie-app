@@ -1,13 +1,24 @@
 <template>
   <div class="flex float-right">
-    <div @click="emit('openThreatConfigurationModal', threat)" class="threats z-10 m-6 p-6 h-40 w-80 cursor-pointer group hover:bg-white hover:shadow-lg hover:border-transparent transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 bg-white rounded-xl shadow-md flex justify-center items-center">
-      <div class="min-w-full">
-        <div class="text-xl font-medium text-black">{{ threat.threatActor }}</div>
-        <p class="text-gray-500">{{ threat.threatDescription }}</p>
-        <p :class="getThreatClass">Risk: <b>{{ threat.threatLevel }}</b></p>
+    <div @click="emit('openThreatConfigurationModal', threat)" class="threats border border-gray-500 border-opacity-50 z-10 m-6 h-60 w-96 cursor-pointer group hover:bg-white hover:shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 bg-white rounded shadow-md flex items-center">
+      <div class="min-w-full min-h-full">
+        <div class="p-3 text-left">
+          <div class="p-3 text-xl font-black text-indigo-600">{{ threat.threatActor }}</div>
+          <div class="p-3 text-gray-500"><p>{{ threat.threatDescription }}</p></div>
+        </div>
+        <div class="grid grid-flow-col grid-cols-2 gap-4 p-2 items-center justify-between bg-gray-50 absolute inset-x-0 bottom-0 border-t border-blue-300 border-opacity-40">
+          <div>
+            <p class="text-sm text-gray-600 font-medium">Addressed Risks</p>
+            <b>10 / {{ totalRiskNumber }}</b>
+          </div>
+          <div>
+            <p class="text-sm text-gray-600 font-medium">Risk</p>
+            <p :class="getThreatClass" class="text-lg font-bold">{{ threat.threatLevel }}</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div @click="emit('emitSelectedBarrier', 'test')" v-for="(barrier, index) in threat.barriers" :key="index" :class="riskColor[totalRiskNumber]" class="threats z-10 m-6 p-6 h-40 w-80 cursor-pointer group hover:bg-blue-200 hover:shadow-lg hover:border-transparent transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 rounded-xl shadow-md flex items-center">
+    <div @click="emit('emitSelectedBarrier', threat.barriers[index])" v-for="(barrier, index) in threat.barriers" :key="index" :class="[riskColor[totalRiskNumber], threat.threatLevel]" class="threats z-10 m-6 h-60 w-96 bg-white border-4 cursor-pointer group hover:shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 rounded shadow-md flex items-center">
       <barrier-card :barrier="barrier" />
     </div>
   </div>
@@ -25,20 +36,16 @@ export default {
       type: Object,
       required: true,
     },
-    barrier: {
-      type: Object,
-      reqired: true,
-    }
   },
   setup(props, { emit }) {
     const getThreatClass = computed(() => {
       return props.threat.threatLevel === 'Medium'
-        ? 'my-6 rounded-md max-w-xs bg-yellow-500 text-white min-w-min'
+        ? 'text-yellow-500'
         : props.threat.threatLevel === 'High'
-        ? 'my-6 rounded-md	bg-red-500 text-white'
+        ? 'text-red-500'
         : props.threat.threatLevel === 'Low'
-        ? 'my-6 rounded-md	bg-yellow-300 text-white'
-        : 'my-6 rounded-md	bg-white'
+        ? 'text-yellow-300'
+        : 'text-gray-700'
     })
 
     const getSelectedBarrier = () => {
@@ -46,19 +53,23 @@ export default {
     }
 
     const riskColor = [
-      'bg-blue-400 text-gray-700',
-      'bg-yellow-900 text-white',
-      'bg-yellow-800 text-white',
-      'bg-yellow-700 text-white',
-      'bg-yellow-600 text-white',
-      'bg-yellow-500 text-white',
-      'bg-yellow-400 text-gray-700',
-      'bg-yellow-300 text-gray-700',
-      'bg-yellow-200 text-gray-700',
-      'bg-yellow-100 text-gray-700']
+      'border-yellow-400 text-gray-700',
+      'border-yellow-900 text-gray-700',
+      'border-yellow-800 text-gray-700',
+      'border-yellow-700 text-gray-700',
+      'border-yellow-600 text-gray-700',
+      'border-yellow-500 text-gray-700',
+      'border-yellow-400 text-gray-700',
+      'border-yellow-300 text-gray-700',
+      'border-yellow-200 text-gray-700',
+      'border-yellow-100 text-gray-700',
+      'border-yellow-50 text-gray-700'
+    ]
 
     const totalRiskNumber = computed(() => {
-      return props.threat.barriers.map((item) => item.riskNumber).reduce((prev, next) => prev + next)
+      return props.threat.barriers
+        .map((item) => item.riskNumber)
+        .reduce((prev, next) => prev + next)
     })
 
     return {
@@ -79,14 +90,27 @@ export default {
 <style scoped>
 .threats:nth-child(1n):after {
   content: '';
-  width: 3em;
-  border-bottom: 5px solid #ddd;
   position: absolute;
-  top: 50%;
-  z-index: 1;
+  left: 97%;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  clear: both;
+  transform: rotate(270deg);
 }
+.High:after {
+  border-top: 20px solid #000;
+}
+.Medium:after {
+  border-top: 20px solid #fcd34d;
+}
+.Low:after {
+  border-top: 20px solid #fde68a;
+}
+
 :after {
-  left: 100%;
+  left: 100.5%;
 }
 :before {
   right: 100%;

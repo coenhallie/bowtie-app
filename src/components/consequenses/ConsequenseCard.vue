@@ -1,11 +1,13 @@
 <template>
   <div class="flex float-left">
-    <div @click="emit('openConsequenseConfigurationModal', consequense)" class="h-40 w-80 cursor-pointer group hover:bg-green-300 hover:shadow-lg hover:border-transparent transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 p-6 m-6 max-w-sm mx-auto bg-green-200 rounded-xl shadow-md flex justify-center items-center">
-      <div class="min-w-full">
-        <div class="text-xl font-medium text-black">
-          {{ consequense.consequenseName }}
+    <div @click="emit('openConsequenseConfigurationModal', consequense)" class="border border-gray-500 border-opacity-50 z-10 m-6 h-60 w-96 cursor-pointer group hover:bg-white hover:shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 bg-white rounded shadow-md flex items-center">
+      <div class="min-w-full min-h-full">
+        <div class="p-3 text-left">
+          <div class="text-xl font-medium text-black">
+            {{ consequense.consequenseName }}
+          </div>
+          <p class="text-gray-500">{{ consequense.consequenseDescription }}</p>
         </div>
-        <p class="text-gray-500">{{ consequense.consequenseDescription }}</p>
       </div>
     </div>
   </div>

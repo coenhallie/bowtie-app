@@ -62,7 +62,7 @@ export default {
           threatName: threat.value,
           threatDescription: threatDescription.value,
           threatLevel: threatLevel.value,
-          barriers: []
+          barriers: [],
         })
         .then(function () {
           emit('closeModal')

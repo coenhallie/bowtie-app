@@ -7,25 +7,22 @@
       <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div class="sm:flex sm:items-start">
-            <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
               <div class="flex justify-between items-center">
                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Threat Configuration</h3>
                 <b class="p-1 px-4 cursor-pointer rounded-md border border-gray-400 hover:bg-gray-100" @click="emit('openAddBarrierModal')">Add barrier</b>
               </div>
               <div class="mt-2">
-                <label class="font-bold" for="threatActor"> Threat Actor:</label>
-                <listbox @selectedThreatActor="myMethodForTheEvent" v-model="threatActor" ref="selectedThreatActor.name"/>
-                <!-- <input :placeholder="selectedThreat.threatActor" :value="threatActor" @input="$emit('update:threatActor', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatActor" type="text"> -->
+                <label class="font-bold" for="threatDescription"> Threat Title:</label>
+                <input :placeholder="selectedThreat.threatTitle" :value="selectedThreat.threatTitle" @input="$emit('update:threatTitle', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatTitle" type="text">
               </div>
               <div class="mt-2">
-                <label class="font-bold" for="threatDescription"> Threat name:</label>
-                <input :placeholder="selectedThreat.threatDescription" :value="threatDescription" @input="$emit('update:threatDescription', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatDescription" type="text">
+                <label class="font-bold" for="threatActor"> Threat Actor:</label>
+                <listbox @selectedThreatActor="myMethodForTheEvent" v-model="threatActor" ref="selectedThreatActor.name"/>
+              </div>
+              <div class="mt-2">
+                <label class="font-bold" for="threatDescription"> Threat Description:</label>
+                <textarea :placeholder="selectedThreat.threatDescription" :value="selectedThreat.threatDescription" @input="$emit('update:threatDescription', $event.target.value)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="threatDescription" type="text" rows="4"></textarea>
               </div>
               <div class="flex justify-between items-center mt-4">
                 <label class="font-bold" for="threatLevel"> Threat Level:</label>
@@ -65,26 +62,16 @@ export default {
       type: Object,
       required: true,
     },
-    // threatActor: {
+    // threatDescription: {
     //   type: String,
     //   default: '',
     //   required: true,
     // },
-    threatDescription: {
-      type: String,
-      default: '',
-      required: true,
-    },
-    // selectedThreatActor: {
+    // threatLevel: {
     //   type: String,
     //   default: '',
     //   required: true,
     // },
-    threatLevel: {
-      type: String,
-      default: '',
-      required: true,
-    },
   },
   components: {
     ConfigurationModal,
@@ -92,6 +79,10 @@ export default {
   },
   setup(props, { emit }) {
     const threatActor = ref('')
+
+    // const myMethodForTheEvent = () => {
+    //   console.log()
+    // }
 
     return {
       emit,

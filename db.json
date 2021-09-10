@@ -1,118 +1,214 @@
 {
-  "threats": [
-    {
-      "id": 1,
-      "threatActor": "Severe DDos attacks from China",
-      "threatDescription": "We have sporadic problems with DDos attacks",
-      "threatLevel": "High",
-      "barriers": [
-        {
-          "id": 1,
-          "barrierName": "Monitor server configuration",
-          "barrierDescription": "Check our Windows server config",
-          "riskNumber": 3
-        },
-        {
-          "id": 2,
-          "barrierName": "Check backup servers",
-          "barrierDescription": "Make suer our backup servers run correctly",
-          "riskNumber": 2
-        },
-        {
-          "id": 3,
-          "barrierName": "Any Chinese hardware installed?",
-          "barrierDescription": "Make sure we dont use any Chinese crap",
-          "riskNumber": 3
-        },
-        {
-          "id": 0.40548290700166767,
-          "barrierName": "Hire no Chinese employees",
-          "barrierDescription": "They're alays a risk",
-          "riskNumber": 1
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "threatActor": "SQL2 Injections",
-      "threatDescription": "even thousands of bugs we have rayray",
-      "threatLevel": "High",
-      "barriers": [
-        {
-          "id": 1,
-          "barrierName": "Sanitize all input fields",
-          "barrierDescription": "Make sure we can't use script tags in input fields",
-          "riskNumber": 2
-        },
-        {
-          "id": 0.9158785534749196,
-          "barrierName": "grdgrgdr",
-          "barrierDescription": "gdrgdrgdg",
-          "riskNumber": 6
-        }
-      ]
-    },
-    {
-      "id": 0.8028111591535882,
-      "threatActor": "Russian backdoors",
-      "threatDescription": "casdcasdcaddddxd",
-      "threatLevel": "Medium",
-      "barriers": [
-        {
-          "id": 0.04296610557405556,
-          "barrierName": "Finding hidden apps",
-          "barrierDescription": "finding ways to identify malicious code",
-          "riskNumber": 4
-        },
-        {
-          "id": 0.5557541850282242,
-          "barrierName": "efsef",
-          "barrierDescription": "efsefsefs",
-          "riskNumber": 5
-        }
-      ]
-    },
-    {
-      "id": 0.28998557484410026,
-      "threatActor": "insider",
-      "threatDescription": "RayRay",
-      "threatLevel": "High",
-      "barriers": [
-        {
-          "id": 0.5322012515495202,
-          "barrierName": "RAYRAY",
-          "barrierDescription": "aap",
-          "riskNumber": 3
-        },
-        {
-          "id": 0.4303549325933307,
-          "barrierName": "vdsvs",
-          "barrierDescription": "sdvsdvsdv",
-          "riskNumber": 4
-        }
-      ]
-    }
-  ],
-  "consequenses": [
-    {
-      "id": 1,
-      "consequenseName": "Service delivery interrupted",
-      "consequenseDescription": "Not being able to deliver our goods in time"
-    },
-    {
-      "id": 2,
-      "consequenseName": "Losing revenue for at least a month",
-      "consequenseDescription": "Revenue we can't miss as our stakeholders expect it"
-    },
-    {
-      "id": 0.29553992253906225,
-      "consequenseName": "ewfwqwefqwef",
-      "consequenseDescription": "fwefefs"
-    },
-    {
-      "id": 0.058250141875479056,
-      "consequenseName": "More workload",
-      "consequenseDescription": "We need more people to work for us"
-    }
-  ]
+  "project1": {
+    "threats": [
+      {
+        "id": 1,
+        "threatActor": "Severe DDos attack",
+        "threatDescription": "Being offline for several days due to a DDos attack. We should make this our priority before looking at other potential problems ",
+        "threatLevel": "High",
+        "barriers": [
+          {
+            "id": 1,
+            "barrierName": "Monitor server configuration",
+            "barrierDescription": "Check our Windows server config",
+            "riskNumber": 3,
+            "completionPercentage": 15
+          },
+          {
+            "id": 2,
+            "barrierName": "Check backup servers",
+            "barrierDescription": "Make suer our backup servers run correctly",
+            "riskNumber": 2,
+            "completionPercentage": 30
+          },
+          {
+            "id": 3,
+            "barrierName": "Check mitigation config",
+            "barrierDescription": "Check Cloudflare or Verizon for prices",
+            "riskNumber": 3,
+            "completionPercentage": 20
+          },
+          {
+            "id": 4,
+            "barrierName": "Develop Denial of Service Response Plan",
+            "barrierDescription": "Look up for the most important steps to make",
+            "riskNumber": 1,
+            "completionPercentage": 15
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "threatActor": "SQL2 Injections",
+        "threatDescription": "Defacing our platforms etc...",
+        "threatLevel": "Medium",
+        "barriers": [
+          {
+            "id": 1,
+            "barrierName": "Sanitize all input fields",
+            "barrierDescription": "Make sure we can't use script tags in input fields",
+            "riskNumber": 2,
+            "completionPercentage": 50
+          },
+          {
+            "id": 0.9158785534749196,
+            "barrierName": "grdgrgdr",
+            "barrierDescription": "gdrgdrgdg",
+            "riskNumber": 6,
+            "completionPercentage": 30
+          }
+        ]
+      },
+      {
+        "id": 0.28998557484410026,
+        "threatActor": "insider",
+        "threatDescription": "RayRay",
+        "threatLevel": "Low",
+        "barriers": [
+          {
+            "id": 0.5322012515495202,
+            "barrierName": "RAYRAY",
+            "barrierDescription": "aap",
+            "riskNumber": 3,
+            "completionPercentage": 15
+          },
+          {
+            "id": 0.4303549325933307,
+            "barrierName": "vdsvs",
+            "barrierDescription": "sdvsdvsdv",
+            "riskNumber": 4,
+            "completionPercentage": 40
+          }
+        ]
+      }
+    ],
+    "consequenses": [
+      {
+        "id": 1,
+        "consequenseName": "dqwqwdqwdqwd",
+        "consequenseDescription": ""
+      },
+      {
+        "id": 2,
+        "consequenseName": "Losing revenue for at least a month",
+        "consequenseDescription": "Revenue we can't miss as our stakeholders expect it"
+      },
+      {
+        "id": 0.29553992253906225,
+        "consequenseName": "ewfwqwefqwef",
+        "consequenseDescription": "fwefefs"
+      },
+      {
+        "id": 0.058250141875479056,
+        "consequenseName": "More workload",
+        "consequenseDescription": "We need more people to work for us"
+      }
+    ]
+  },
+  "project2": {
+    "threats": [
+      {
+        "id": 1,
+        "threatActor": "Severe DDos attack",
+        "threatDescription": "Being offline for several days due to a DDos attack. We should make this our priority before looking at other potential problems ",
+        "threatLevel": "High",
+        "barriers": [
+          {
+            "id": 1,
+            "barrierName": "Monitor server configuration",
+            "barrierDescription": "Check our Windows server config",
+            "riskNumber": 3,
+            "completionPercentage": 15
+          },
+          {
+            "id": 2,
+            "barrierName": "Check backup servers",
+            "barrierDescription": "Make suer our backup servers run correctly",
+            "riskNumber": 2,
+            "completionPercentage": 30
+          },
+          {
+            "id": 3,
+            "barrierName": "Check mitigation config",
+            "barrierDescription": "Check Cloudflare or Verizon for prices",
+            "riskNumber": 3,
+            "completionPercentage": 20
+          },
+          {
+            "id": 4,
+            "barrierName": "Develop Denial of Service Response Plan",
+            "barrierDescription": "Look up for the most important steps to make",
+            "riskNumber": 1,
+            "completionPercentage": 15
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "threatActor": "SQL2 Injections",
+        "threatDescription": "Defacing our platforms etc...",
+        "threatLevel": "Medium",
+        "barriers": [
+          {
+            "id": 1,
+            "barrierName": "Sanitize all input fields",
+            "barrierDescription": "Make sure we can't use script tags in input fields",
+            "riskNumber": 2,
+            "completionPercentage": 50
+          },
+          {
+            "id": 0.9158785534749196,
+            "barrierName": "grdgrgdr",
+            "barrierDescription": "gdrgdrgdg",
+            "riskNumber": 6,
+            "completionPercentage": 30
+          }
+        ]
+      },
+      {
+        "id": 0.28998557484410026,
+        "threatActor": "insider",
+        "threatDescription": "RayRay",
+        "threatLevel": "Low",
+        "barriers": [
+          {
+            "id": 0.5322012515495202,
+            "barrierName": "RAYRAY",
+            "barrierDescription": "aap",
+            "riskNumber": 3,
+            "completionPercentage": 15
+          },
+          {
+            "id": 0.4303549325933307,
+            "barrierName": "vdsvs",
+            "barrierDescription": "sdvsdvsdv",
+            "riskNumber": 4,
+            "completionPercentage": 40
+          }
+        ]
+      }
+    ],
+    "consequenses": [
+      {
+        "id": 1,
+        "consequenseName": "dqwqwdqwdqwd",
+        "consequenseDescription": ""
+      },
+      {
+        "id": 2,
+        "consequenseName": "Losing revenue for at least a month",
+        "consequenseDescription": "Revenue we can't miss as our stakeholders expect it"
+      },
+      {
+        "id": 0.29553992253906225,
+        "consequenseName": "ewfwqwefqwef",
+        "consequenseDescription": "fwefefs"
+      },
+      {
+        "id": 0.058250141875479056,
+        "consequenseName": "More workload",
+        "consequenseDescription": "We need more people to work for us"
+      }
+    ]
+  }
 }

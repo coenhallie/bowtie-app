@@ -1,9 +1,11 @@
 <template>
   <div>
-    <div ref="parent" class="grid grid-cols-3 gap-4">
+            <button class="bg-black" @click="resetZoom"> reset</button>
+
+    <div id="dashboardparent" ref="parent" class="grid grid-cols-3 gap-4">
       <div class="threat">
         <transition-group name="fade">
-          <threat-card id="threat-card" v-for="(threat, index) in threats" :key="index" :threat="threat" @openThreatConfigurationModal="configureThreatModal(threat)" @emitSelectedBarrier="configureBarrierModal(threat.barriers[1])" />
+          <threat-card id="threat-card" v-for="(threat, index) in threats" :key="index" :threat="threat" @openThreatConfigurationModal="configureThreatModal(threat)" @emitSelectedBarrier="configureBarrierModal" />
         </transition-group>
       </div>
       <main-hazard id="main-hazard-card" @openAddThreatModal="newThreatModal" @openAddConsequenseModal="newConsequenseModal" />
@@ -25,7 +27,7 @@
     <threat-configuration-modal @cancelThreatChange="cancelThreatChange" @changeThreatData="changeThreatData(selectedThreat.id)" @openAddBarrierModal="newBarrierModal" v-model:threatActor="selectedThreat.threatActor" v-model:threatDescription="selectedThreat.threatDescription" v-model:threatLevel="selectedThreat.threatLevel" v-if="openThreatConfigurationModal" @removeThreat="removeThreat(selectedThreat)" :selectedThreat="selectedThreat" @closeModal="openThreatConfigurationModal = false" />
   </transition>
   <transition name="fade">
-    <barrier-configuration-modal :barrier="barrier" @changeBarrierData="changeBarrierData(selectedBarrier.id)" v-model:barrierName="barrierName" v-model:barrierDescription="barrierDescription" v-model:riskNumber="riskNumber" v-if="openBarrierConfigurationModal" @removeBarrier="removeBarrier(selectedBarrier)" :selectedBarrier="selectedBarrier" @closeModal="openBarrierConfigurationModal = false" />
+    <barrier-configuration-modal @changeBarrierData="changeBarrierData(selectedBarrier.id)" v-model:barrierName="barrierName" v-model:barrierDescription="barrierDescription" v-model:riskNumber="riskNumber" v-if="openBarrierConfigurationModal" @removeBarrier="removeBarrier(selectedBarrier)" :selectedBarrier="selectedBarrier" @closeModal="openBarrierConfigurationModal = false" />
   </transition>
   <transition name="fade">
     <consequense-configuration-modal :consequense="consequense" @changeConsequenseData="changeConsequenseData(selectedConsequense.id)" v-model:consequenseName="consequenseName" v-model:consequenseDescription="consequenseDescription" v-if="openConsequenseConfigurationModal" @removeConsequense="removeConsequense(selectedConsequense)" :selectedConsequense="selectedConsequense" @closeModal="openConsequenseConfigurationModal = false" />
@@ -49,7 +51,7 @@ import ConsequenseConfigurationModal from '@/components/consequenses/Consequense
 
 export default {
   name: 'Dashboard',
-  setup() {
+  async setup() {
     const state = reactive({
       threats: [],
       selectedThreat: {},
@@ -86,8 +88,8 @@ export default {
     // const supabase = createClient(supabaseUrl, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNzE2NTA2NywiZXhwIjoxOTQyNzQxMDY3fQ.pWlhjDMRbXbopftW7vko7U4iWAOg157YQJXQ3KNhjJ4')
 
     const fetchThreats = () => {
-      return axios.get('http://localhost:3000/threats').then((response) => {
-        state.threats = response.data
+      return axios.get('http://localhost:3000/project1/').then((response) => {
+        state.threats = response.data.threats
       })
     }
 
@@ -140,7 +142,7 @@ export default {
       newConsequenseArray[foundIndex] = { ...newConsequenseArray[foundIndex], ...consequenseDetails }
       state.consequenses = newConsequenseArray
       axios
-        .put('http://localhost:3000/consequenses/' + id, {
+        .put('http://localhost:3000/threats/consequenses/' + id, {
           id: id,
           consequenseName: consequenseDetails.consequenseName,
           consequenseDescription: consequenseDetails.consequenseDescription,
@@ -169,10 +171,9 @@ export default {
       state.selectedThreat = threat
     }
 
-    const configureBarrierModal = (barrier) => {
-      console.log('I CAME HERE', barrier)
+    const configureBarrierModal = (value) => {
       state.openBarrierConfigurationModal = true
-      state.selectedBarrier = barrier
+      state.selectedBarrier = value
     }
 
     const configureConsequenseModal = (consequense) => {
@@ -180,7 +181,7 @@ export default {
       state.selectedConsequense = consequense
     }
 
-  //   let { data: threat, error } = await supabase
+  // let { data: threat, error } = await supabase
   // .from('threat')
   // .select('*')
 
@@ -188,9 +189,9 @@ export default {
 
     const fetchConsequenses = () => {
       return axios
-        .get('http://localhost:3000/consequenses')
+        .get('http://localhost:3000/project1')
         .then((response) => {
-          state.consequenses = response.data
+          state.consequenses = response.data.consequenses
         })
     }
 
@@ -263,4 +264,5 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+
 </style>
