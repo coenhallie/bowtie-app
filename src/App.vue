@@ -1,33 +1,24 @@
 <template>
-  <div id="nav">
-    <div class="grid grid-flow-col">
-      <div>
-        <h1 class="float-left font-bold text-xl">Risk Analysis</h1>
-      </div>
-      <div>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/pricing">Pricing</router-link> |
-        <router-link to="/devs">Developers</router-link> |
-        <router-link to="/about">About</router-link>
-      </div>
-    </div>
-  </div>
-  <projects />
   <div id="router-view">
     <router-view />
   </div>
 </template>
 
 <script>
-import Projects from './components/Projects'
+// import Projects from './components/Projects'
 
 export default {
-  setup() {
-    return {}
-  },
-  components: {
-    Projects,
-  }
+  // setup() {
+  //   const selectProject = (project) => {
+  //     console.log('selected project', project)
+  //   }
+  //   return {
+  //     selectProject,
+  //   }
+  // },
+  // components: {
+  //   Projects,
+  // }
 }
 </script>
 

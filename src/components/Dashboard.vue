@@ -1,7 +1,5 @@
 <template>
-  <div>
-            <button class="bg-black" @click="resetZoom"> reset</button>
-
+  <div class="overflow-hidden">
     <div id="dashboardparent" ref="parent" class="grid grid-cols-3 gap-4">
       <div class="threat">
         <transition-group name="fade">
@@ -51,6 +49,7 @@ import ConsequenseConfigurationModal from '@/components/consequenses/Consequense
 
 export default {
   name: 'Dashboard',
+  props: ['selectProject'],
   async setup() {
     const state = reactive({
       threats: [],
@@ -88,7 +87,7 @@ export default {
     // const supabase = createClient(supabaseUrl, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNzE2NTA2NywiZXhwIjoxOTQyNzQxMDY3fQ.pWlhjDMRbXbopftW7vko7U4iWAOg157YQJXQ3KNhjJ4')
 
     const fetchThreats = () => {
-      return axios.get('http://localhost:3000/project1/').then((response) => {
+      return axios.get('http://localhost:3000/project2/').then((response) => {
         state.threats = response.data.threats
       })
     }
